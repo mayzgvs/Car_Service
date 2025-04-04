@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8d00f712eaaa4682b9f181c684e4e701" Name="Diagram1">
+        <EntityTypeShape EntityType="Car_serviceModel.Customers" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Car_serviceModel.Employees" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Car_serviceModel.Feedback" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Car_serviceModel.Inventory" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Car_serviceModel.Orders" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Car_serviceModel.Parts" Width="1.5" PointX="8.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Car_serviceModel.Payments" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Car_serviceModel.Services" Width="1.5" PointX="8.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Car_serviceModel.Vehicles" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Car_serviceModel.Work" Width="1.5" PointX="10.5" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="Car_serviceModel.FK__Feedback__Custom__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="Car_serviceModel.FK__Vehicles__Custom__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="Car_serviceModel.FK_Orders_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="Car_serviceModel.FK_Payments_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="Car_serviceModel.FK__Work__EmployeeID__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="Car_serviceModel.FK__Parts__Inventory__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="Car_serviceModel.FK__Work__OrderID__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="Car_serviceModel.FK_Orders_Vehicles" ManuallyRouted="false" />
+        <AssociationConnector Association="Car_serviceModel.FK_Payments_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="Car_serviceModel.FK__Work__PartID__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="Car_serviceModel.FK__Work__ServiceID__4CA06362" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
