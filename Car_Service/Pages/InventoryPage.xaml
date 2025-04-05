@@ -22,13 +22,16 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="Назад" Style="{StaticResource ActiveButtonStyle}" HorizontalAlignment="Right" Grid.Row="1" Width="140" x:Name="BtnBack" Click="BtnBack_Click" Margin="0,0,10,0" Height="40" VerticalAlignment="Center">
+        <Button Content="Назад" Style="{DynamicResource ActiveButtonStyle}" HorizontalAlignment="Right" Grid.Row="1" Width="140" x:Name="BtnBack" Click="BtnBack_Click" Margin="0,0,10,0" Height="40" VerticalAlignment="Center">
         </Button>
 
-        <Button Content="Добавить" Style="{StaticResource PrimaryButtonStyle}" HorizontalAlignment="Left" Grid.Row="1" Width="140" x:Name="BtnAdd" Click="BtnAdd_Click" Margin="10,0,0,0" Height="40" VerticalAlignment="Center">
+        <Button Content="Добавить" Style="{DynamicResource PrimaryButtonStyle}" HorizontalAlignment="Left" Grid.Row="1" Width="140" x:Name="BtnAdd" Click="BtnAdd_Click" Margin="10,0,0,0" Height="40" VerticalAlignment="Center">
         </Button>
 
-        <Button Content="Удалить" Style="{StaticResource PrimaryButtonStyle}" HorizontalAlignment="Left" Grid.Row="1" Width="140" x:Name="BtnDelete" Click="BtnDelete_Click" Margin="170,0,0,0" Height="40" VerticalAlignment="Center">
+        <Button Content="Редактировать" Style="{DynamicResource PrimaryButtonStyle}" HorizontalAlignment="Left" Grid.Row="1" Width="140" x:Name="BtnRed"  Margin="162,0,0,0" Height="40" VerticalAlignment="Center" Click="BtnRed_Click">
+        </Button>
+
+        <Button Content="Удалить" Style="{DynamicResource PrimaryButtonStyle}" HorizontalAlignment="Left" Grid.Row="1" Width="140" x:Name="BtnDelete" Click="BtnDelete_Click" Margin="316,0,0,0" Height="40" VerticalAlignment="Center">
         </Button>
     </Grid>
 </Page>

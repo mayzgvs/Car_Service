@@ -14,7 +14,7 @@
             <RowDefinition Height="23*"/>
         </Grid.RowDefinitions>
 
-        <Button Content="Назад" Style="{StaticResource ActiveButtonStyle}" HorizontalAlignment="Right" Grid.Row="1" Width="140" x:Name="BtnBack" Click="BtnBack_Click" Margin="0,0,10,0" Height="40" VerticalAlignment="Center">
+        <Button Content="Назад" Style="{DynamicResource ActiveButtonStyle}" HorizontalAlignment="Right" Grid.Row="1" Width="140" x:Name="BtnBack" Click="BtnBack_Click" Margin="0,0,10,0" Height="40" VerticalAlignment="Center">
         </Button>
     </Grid>
 </Page>

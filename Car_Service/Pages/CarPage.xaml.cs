@@ -25,6 +25,16 @@ namespace Car_Service.Pages
         {
             InitializeComponent();
             DGridCar.ItemsSource = Entities.GetContext().Vehicles.ToList();
+            DGridCar.ItemsSource = Entities.GetContext().Customers.ToList();
+        }
+
+        private void CarPage_IsVisibleChanged (object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+                DGridCar.ItemsSource = Entities.GetContext().Vehicles.ToList();
+            }
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -39,7 +49,23 @@ namespace Car_Service.Pages
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
+            var carForRemoving = DGridCar.SelectedItems.Cast<Vehicles>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить записи в количестве {carForRemoving.Count()} элементов?",
+                "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Entities.GetContext().Vehicles.RemoveRange(carForRemoving);
+                    Entities.GetContext().SaveChanges();
+                    MessageBox.Show("Данные успешно удалены!");
 
+                    DGridCar.ItemsSource = Entities.GetContext().Vehicles.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void BtnRed_Click(object sender, RoutedEventArgs e)

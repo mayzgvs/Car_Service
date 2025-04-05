@@ -53,8 +53,8 @@
                 <Label Content="Пароль:" Style="{StaticResource LabelStyle}" Grid.Row="7" Grid.Column="0" Margin="5"/>
                 <PasswordBox x:Name="psBox" Style="{StaticResource PasswordBoxStyle}" Grid.Row="7" Grid.Column="1" Margin="5"/>
 
-                <Button x:Name="registerButton" Style="{StaticResource PrimaryButtonStyle}" Content="Зарегистрироваться" Grid.Row="8" HorizontalAlignment="Left" Margin="34,30,0,-10" Click="registerButton_Click" Width="200" Height="40" Grid.Column="1"/>
-                <Button x:Name="BackButton" Style="{StaticResource ActiveButtonStyle}" Content="Назад" Grid.Row="8" HorizontalAlignment="Left" Margin="205,0,0,-115" Width="200" Height="40" Grid.Column="1" Click="BackButton_Click" VerticalAlignment="Bottom"/>
+                <Button x:Name="registerButton" Style="{DynamicResource PrimaryButtonStyle}" Content="Зарегистрироваться" Grid.Row="8" HorizontalAlignment="Left" Margin="34,30,0,-10" Click="registerButton_Click" Width="200" Height="40" Grid.Column="1"/>
+                <Button x:Name="BackButton" Style="{DynamicResource ActiveButtonStyle}" Content="Назад" Grid.Row="8" HorizontalAlignment="Left" Margin="205,0,0,-115" Width="200" Height="40" Grid.Column="1" Click="BackButton_Click" VerticalAlignment="Bottom"/>
             </Grid>
         </Border>
     </Grid>

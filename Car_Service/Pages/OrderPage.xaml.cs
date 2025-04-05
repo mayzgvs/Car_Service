@@ -40,5 +40,10 @@ namespace Car_Service.Pages
         {
 
         }
+
+        private void BtnRed_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
