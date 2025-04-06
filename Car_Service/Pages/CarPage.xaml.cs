@@ -25,7 +25,7 @@ namespace Car_Service.Pages
         {
             InitializeComponent();
             DGridCar.ItemsSource = Entities.GetContext().Vehicles.ToList();
-            DGridCar.ItemsSource = Entities.GetContext().Customers.ToList();
+            //DGridCar.ItemsSource = Entities.GetContext().Customers.ToList();
         }
 
         private void CarPage_IsVisibleChanged (object sender, DependencyPropertyChangedEventArgs e)

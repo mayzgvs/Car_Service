@@ -30,13 +30,13 @@
 
         <!--<ComboBox Name="CarAdd" DisplayMemberPath="NameOfCar" SelectedItem="{Binding Vehicles}" Grid.Row="0" Grid.Column="1"/>-->
 
-        <TextBox Text="{Binding Make}" Style="{Binding TextBoxStyle}" Grid.Row="0" Grid.Column="1" Margin="20,20,20,20"/>
-        <TextBox Text="{Binding Model}" Style="{Binding TextBoxStyle}" Grid.Row="1" Grid.Column="1" Margin="20,20,20,20"/>
-        <TextBox Text="{Binding VIN}" Style="{Binding TextBoxStyle}" Grid.Row="2" Grid.Column="1" Margin="20,20,20,20"/>
-        <TextBox Text="{Binding Customers.FirstName}" Style="{Binding TextBoxStyle}" Grid.Row="3" Grid.Column="1" Margin="20,20,20,20"/>
-        <TextBox Text="{Binding Customers.LastName}" Style="{Binding TextBoxStyle}" Grid.Row="4" Grid.Column="1" Margin="20,20,20,20"/>
+        <TextBox Text="{Binding Make}" Style="{Binding TextBoxStyle}" Grid.Row="0" Grid.Column="1" Margin="20,20,20,20" Height="32" Width="510" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Text="{Binding Model}" Style="{Binding TextBoxStyle}" Grid.Row="1" Grid.Column="1" Margin="20,20,20,20" Height="32" Width="510" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Text="{Binding VIN}" Style="{Binding TextBoxStyle}" Grid.Row="2" Grid.Column="1" Margin="20,20,20,20" Height="32" Width="510" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Text="{Binding Customers.FirstName}" Style="{Binding TextBoxStyle}" Grid.Row="3" Grid.Column="1" Margin="20,20,20,20" Height="32" Width="510" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Text="{Binding Customers.LastName}" Style="{Binding TextBoxStyle}" Grid.Row="4" Grid.Column="1" Margin="20,20,20,20" Height="32" Width="510" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-        <Button x:Name="bSave" Style="{StaticResource PrimaryButtonStyle}" Content="Сохранить" Grid.Row="5" Grid.Column="1" Width="132" Click="bSave_Click" Height="42" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Button x:Name="bBack" Style="{StaticResource ActiveButtonStyle}" Content="Назад" Grid.Row="5" Grid.Column="1" Width="133"  Margin="407,0,0,0" Height="42" VerticalAlignment="Center" HorizontalAlignment="Left" Click="bBack_Click"/>
+        <Button x:Name="bSave" Style="{StaticResource PrimaryButtonStyle}" Content="Сохранить" Grid.Row="5" Grid.Column="1" Width="132" Click="bSave_Click" Height="42" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="190,0,0,0"/>
+        <Button x:Name="bBack" Style="{StaticResource ActiveButtonStyle}" Content="Назад" Grid.Row="5" Grid.Column="1" Width="133"  Margin="397,0,0,0" Height="42" VerticalAlignment="Center" HorizontalAlignment="Left" Click="bBack_Click"/>
     </Grid>
 </Page>
