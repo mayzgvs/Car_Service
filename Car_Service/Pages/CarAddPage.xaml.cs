@@ -36,7 +36,6 @@ namespace Car_Service.Pages
 
         private void bSave_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new CarAddPage(null));
             StringBuilder errors = new StringBuilder();
             if (string.IsNullOrWhiteSpace(_vehicles.Make)) errors.AppendLine("Введите марку транспортного средства");
             if (string.IsNullOrWhiteSpace(_vehicles.Model)) errors.AppendLine("Введите модель транспортного средства");
@@ -47,8 +46,10 @@ namespace Car_Service.Pages
             if (errors.Length > 0) {MessageBox.Show(errors.ToString()); return; }
             if (_vehicles.VehicleID == 0) Entities.GetContext().Vehicles.Add(_vehicles);
 
-            var customer = Entities.GetContext().Customers.FirstOrDefault(c => c.FullName==fName.SelectedItem.ToString());
-            _vehicles.CustomerID=customer.CustomerID;
+            if (fName.SelectedItem is Customers selectedCustomer)
+            {
+                _vehicles.CustomerID = selectedCustomer.CustomerID;
+            }
 
             try
             {

@@ -20,7 +20,7 @@ namespace Car_Service
         {
         }
 
-        private static Entities _context = new Entities();
+        private static Entities _context;
 
         public static Entities GetContext()
         {
