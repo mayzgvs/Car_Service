@@ -19,8 +19,7 @@
                 <DataGridTextColumn Header="Марка" Binding="{Binding Make}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Модель" Binding="{Binding Model}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="VIN" Binding="{Binding VIN}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Имя" Binding="{Binding Customers.FirstName}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding Customers.LastName}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="ФИО клиента" Binding="{Binding Customers.FullName}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 

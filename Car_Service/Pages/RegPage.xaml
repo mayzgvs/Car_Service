@@ -35,23 +35,20 @@
                 <Label Content="Имя:" Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="0" Margin="5"/>
                 <TextBox x:Name="nameText" Style="{StaticResource TextBoxStyle}" Grid.Row="1" Grid.Column="1" Margin="5"/>
 
-                <Label Content="Фамилия:" Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0" Margin="5"/>
-                <TextBox x:Name="surnameText" Style="{StaticResource TextBoxStyle}" Grid.Row="2" Grid.Column="1" Margin="5"/>
+                <Label Content="Должность:" Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0" Margin="5"/>
+                <TextBox x:Name="posText" Style="{StaticResource TextBoxStyle}" Grid.Row="2" Grid.Column="1" Margin="5"/>
 
-                <Label Content="Должность:" Style="{StaticResource LabelStyle}" Grid.Row="3" Grid.Column="0" Margin="5"/>
-                <TextBox x:Name="posText" Style="{StaticResource TextBoxStyle}" Grid.Row="3" Grid.Column="1" Margin="5"/>
+                <Label Content="Номер телефона:" Style="{StaticResource LabelStyle}" Grid.Row="3" Grid.Column="0" Margin="5"/>
+                <TextBox x:Name="phoneText" Style="{StaticResource TextBoxStyle}" Grid.Row="3" Grid.Column="1" Margin="5"/>
 
-                <Label Content="Номер телефона:" Style="{StaticResource LabelStyle}" Grid.Row="4" Grid.Column="0" Margin="5"/>
-                <TextBox x:Name="phoneText" Style="{StaticResource TextBoxStyle}" Grid.Row="4" Grid.Column="1" Margin="5"/>
+                <Label Content="Email:" Style="{StaticResource LabelStyle}" Grid.Row="4" Grid.Column="0" Margin="5"/>
+                <TextBox x:Name="emailText" Style="{StaticResource TextBoxStyle}" Grid.Row="4" Grid.Column="1" Margin="5"/>
 
-                <Label Content="Email:" Style="{StaticResource LabelStyle}" Grid.Row="5" Grid.Column="0" Margin="5"/>
-                <TextBox x:Name="emailText" Style="{StaticResource TextBoxStyle}" Grid.Row="5" Grid.Column="1" Margin="5"/>
+                <Label Content="Логин:" Style="{StaticResource LabelStyle}" Grid.Row="5" Grid.Column="0" Margin="5"/>
+                <TextBox x:Name="tbLogin" Style="{StaticResource TextBoxStyle}" Grid.Row="5" Grid.Column="1" Margin="5"/>
 
-                <Label Content="Логин:" Style="{StaticResource LabelStyle}" Grid.Row="6" Grid.Column="0" Margin="5"/>
-                <TextBox x:Name="tbLogin" Style="{StaticResource TextBoxStyle}" Grid.Row="6" Grid.Column="1" Margin="5"/>
-
-                <Label Content="Пароль:" Style="{StaticResource LabelStyle}" Grid.Row="7" Grid.Column="0" Margin="5"/>
-                <PasswordBox x:Name="psBox" Style="{StaticResource PasswordBoxStyle}" Grid.Row="7" Grid.Column="1" Margin="5"/>
+                <Label Content="Пароль:" Style="{StaticResource LabelStyle}" Grid.Row="6" Grid.Column="0" Margin="5"/>
+                <PasswordBox x:Name="psBox" Style="{StaticResource PasswordBoxStyle}" Grid.Row="6" Grid.Column="1" Margin="5"/>
 
                 <Button x:Name="registerButton" Style="{DynamicResource PrimaryButtonStyle}" Content="Зарегистрироваться" Grid.Row="8" HorizontalAlignment="Left" Margin="34,30,0,-10" Click="registerButton_Click" Width="200" Height="40" Grid.Column="1"/>
                 <Button x:Name="BackButton" Style="{DynamicResource ActiveButtonStyle}" Content="Назад" Grid.Row="8" HorizontalAlignment="Left" Margin="205,0,0,-115" Width="200" Height="40" Grid.Column="1" Click="BackButton_Click" VerticalAlignment="Bottom"/>

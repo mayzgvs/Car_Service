@@ -80,8 +80,7 @@ namespace Car_Service.Pages
                     Entities db = new Entities();
                     Employees employerObject = new Employees();
                     {
-                        employerObject.FirstName = nameText.Text;
-                        employerObject.LastName = surnameText.Text;
+                        employerObject.FullName = nameText.Text;
                         employerObject.Position = posText.Text;
                         employerObject.Phone = phoneText.Text;
                         employerObject.Email = emailText.Text;

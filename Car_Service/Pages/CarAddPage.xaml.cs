@@ -23,18 +23,16 @@ namespace Car_Service.Pages
     /// </summary>
     public partial class CarAddPage : Page
     {
-        public CarAddPage(Vehicles selectedVehicles/*, Customers selectedCustomers*/)
+        public CarAddPage(Vehicles selectedVehicles)
         {
             InitializeComponent();
             if (selectedVehicles != null) _vehicles = selectedVehicles;
             DataContext = _vehicles;
 
-            //if (selectedCustomers != null) _customers = selectedCustomers;
-            //DataContext = _customers;
+            fName.ItemsSource = Entities.GetContext().Customers.ToList();
         }
 
         private Vehicles _vehicles = new Vehicles();
-        //private Customers _customers = new Customers();
 
         private void bSave_Click(object sender, RoutedEventArgs e)
         {
@@ -44,12 +42,13 @@ namespace Car_Service.Pages
             if (string.IsNullOrWhiteSpace(_vehicles.Model)) errors.AppendLine("Введите модель транспортного средства");
             if (string.IsNullOrWhiteSpace(_vehicles.VIN)) errors.AppendLine("Введите VIN номер транспортного средства");
             else if (!Regex.IsMatch(_vehicles.VIN, @"^[A-HJ-NPR-Z0-9]{17}$")) errors.AppendLine("Стандартный VIN состоит из 17 символов (цифры и латинские буквы, за исключением I, O и Q");
-            //if (string.IsNullOrWhiteSpace(_customers.FirstName)) errors.AppendLine("Введите имя клиента");
-            //if (string.IsNullOrWhiteSpace(_customers.LastName)) errors.AppendLine("Введите фамилию клиента");
+            if (fName.SelectedItem==null) errors.AppendLine("Введите ФИО клиента");
 
             if (errors.Length > 0) {MessageBox.Show(errors.ToString()); return; }
             if (_vehicles.VehicleID == 0) Entities.GetContext().Vehicles.Add(_vehicles);
-            //if (_customers.CustomerID == 0) Entities.GetContext().Customers.Add(_customers);
+
+            var customer = Entities.GetContext().Customers.FirstOrDefault(c => c.FullName==fName.SelectedItem.ToString());
+            _vehicles.CustomerID=customer.CustomerID;
 
             try
             {

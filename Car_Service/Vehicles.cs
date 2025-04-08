@@ -26,10 +26,7 @@ namespace Car_Service
         public string Model { get; set; }
         public int Year { get; set; }
         public string VIN { get; set; }
-
-        // Навигационное свойство (если есть связь)
-        public Customers Customer { get; set; }  // Важно!
-
+    
         public virtual Customers Customers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }

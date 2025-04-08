@@ -17,8 +17,7 @@
 
         <DataGrid x:Name="DGridCustomer" AutoGenerateColumns="False" IsReadOnly="True" Style="{StaticResource DataGridStyle}" Margin="0,0,0,2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="ФИО клиента" Binding="{Binding FullName}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>

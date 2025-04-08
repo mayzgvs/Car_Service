@@ -15,7 +15,6 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
@@ -25,16 +24,12 @@
         <TextBlock Text="Марка транспортного средства" Style="{Binding TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="206" Height="19"/>
         <TextBlock Text="Модель транспортного средства" Style="{Binding TextBlockStyle}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="19" Width="210"/>
         <TextBlock Text="VIN-номер транспортного средства" Style="{Binding TextBlockStyle}" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="19" Width="230"/>
-        <TextBlock Text="Имя клиента" Style="{Binding TextBlockStyle}" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="19" Width="82"/>
-        <TextBlock Text="Фамилия клиента" Style="{Binding TextBlockStyle}" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Height="19" Width="112"/>
+        <TextBlock Text="ФИО клиента" Style="{Binding TextBlockStyle}" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="19" Width="86"/>
 
-        <!--<ComboBox Name="CarAdd" DisplayMemberPath="NameOfCar" SelectedItem="{Binding Vehicles}" Grid.Row="0" Grid.Column="1"/>-->
-
-        <TextBox Text="{Binding Make}" Style="{Binding TextBoxStyle}" Grid.Row="0" Grid.Column="1" Margin="20,20,20,20" Height="32" Width="510" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Text="{Binding Model}" Style="{Binding TextBoxStyle}" Grid.Row="1" Grid.Column="1" Margin="20,20,20,20" Height="32" Width="510" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Text="{Binding VIN}" Style="{Binding TextBoxStyle}" Grid.Row="2" Grid.Column="1" Margin="20,20,20,20" Height="32" Width="510" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Text="{Binding Customers.FirstName}" Style="{Binding TextBoxStyle}" Grid.Row="3" Grid.Column="1" Margin="20,20,20,20" Height="32" Width="510" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Text="{Binding Customers.LastName}" Style="{Binding TextBoxStyle}" Grid.Row="4" Grid.Column="1" Margin="20,20,20,20" Height="32" Width="510" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Text="{Binding Make}" Style="{Binding TextBoxStyle}" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Text="{Binding Model}" Style="{Binding TextBoxStyle}" Grid.Row="1" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Text="{Binding VIN}" Style="{Binding TextBoxStyle}" Grid.Row="2" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <ComboBox Name="fName" SelectedValuePath="Customers" DisplayMemberPath="FullName" Grid.Row="3" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
         <Button x:Name="bSave" Style="{StaticResource PrimaryButtonStyle}" Content="Сохранить" Grid.Row="5" Grid.Column="1" Width="132" Click="bSave_Click" Height="42" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="190,0,0,0"/>
         <Button x:Name="bBack" Style="{StaticResource ActiveButtonStyle}" Content="Назад" Grid.Row="5" Grid.Column="1" Width="133"  Margin="397,0,0,0" Height="42" VerticalAlignment="Center" HorizontalAlignment="Left" Click="bBack_Click"/>
