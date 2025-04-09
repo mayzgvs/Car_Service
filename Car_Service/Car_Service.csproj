@@ -129,6 +129,9 @@
     <Compile Include="Pages\PartsAddPage.xaml.cs">
       <DependentUpon>PartsAddPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\PayAddPage.xaml.cs">
+      <DependentUpon>PayAddPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ServiceAddPage.xaml.cs">
       <DependentUpon>ServiceAddPage.xaml</DependentUpon>
     </Compile>
@@ -224,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\PartsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PayAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -24,7 +24,39 @@ namespace Car_Service.Pages
         public MainPage()
         {
             InitializeComponent();
+            // Инициализация фильтра
+            //PageFilter.SelectionChanged += (s, e) => ApplySearch();
+            //SearchTextBox.TextChanged += (s, e) => ApplySearch();
         }
+        //private void ApplySearch()
+        //{
+        //    string searchText = SearchTextBox.Text.ToLower();
+        //    string selectedPage = (PageFilter.SelectedItem as ComboBoxItem)?.Content.ToString();
+
+        //    switch (selectedPage)
+        //    {
+        //        case "Клиенты":
+        //            NavigationService.Navigate(new CustomersPage(searchText));
+        //            break;
+        //        //case "Машины":
+        //        //    NavigationService.Navigate(new CarPage(searchText));
+        //        //    break;
+        //        //case "Сотрудники":
+        //        //    NavigationService.Navigate(new EmployeesPage(searchText));
+        //        //    break;
+        //        //case "Склады":
+        //        //    NavigationService.Navigate(new InventoryPage(searchText));
+        //        //    break;
+        //        //case "Запчасти":
+        //        //    NavigationService.Navigate(new PartsPage(searchText));
+        //        //    break;
+        //        //case "Услуги":
+        //        //    NavigationService.Navigate(new ServicePage(searchText));
+        //        //    break;
+        //        default:
+        //            break;
+        //    }
+        //}
 
         private void ButtonOtchet_Click(object sender, RoutedEventArgs e)
         {
