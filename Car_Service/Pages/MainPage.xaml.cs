@@ -90,5 +90,10 @@ namespace Car_Service.Pages
         { 
             Application.Current.Shutdown();
         }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

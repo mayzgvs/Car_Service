@@ -65,7 +65,6 @@ namespace Car_Service.Pages
 
                 if (psBox.Password.Length < 6) errors.AppendLine("Пароль должен быть больше 6 символов!");
                 if (!regex.IsMatch(phoneText.Text)) errors.AppendLine("Укажите номер телефона в формате +7ХХХХХХХХХХ");
-
                 if (!en) errors.AppendLine("Пароль должен быть на английском языке");
                 if (!number) errors.AppendLine("Пароль должен содержать хотя бы одну цифру");
                 if (!regex1.IsMatch(emailText.Text)) errors.AppendLine("Введите корректный email");

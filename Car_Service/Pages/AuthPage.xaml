@@ -9,7 +9,7 @@
       Title="AuthPage">
 
     <Grid Style="{DynamicResource GridStyle}" Margin="0,5,0,0">
-        <Border Background="Transparent" CornerRadius="10" Padding="20" VerticalAlignment="Center" HorizontalAlignment="Center" Width="400">
+        <Border CornerRadius="10" Padding="20" VerticalAlignment="Center" HorizontalAlignment="Center" Width="400">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="5" BlurRadius="10" Opacity="0.5"/>
             </Border.Effect>

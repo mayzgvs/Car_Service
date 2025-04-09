@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace Car_Service.Pages
 {
@@ -25,6 +26,14 @@ namespace Car_Service.Pages
             InitializeComponent();
             DGridFeedback.ItemsSource = Entities.GetContext().Feedback.ToList();
         }
+        private void FeedbackPage_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+                DGridFeedback.ItemsSource = Entities.GetContext().Feedback.ToList();
+            }
+        }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
@@ -33,17 +42,33 @@ namespace Car_Service.Pages
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new FeedbackAddPage);
+            NavigationService.Navigate(new FeedbackAddPage(null));
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
+            var feedbackForRemoving = DGridFeedback.SelectedItems.Cast<Feedback>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить записи в количестве {feedbackForRemoving.Count()} элементов?",
+                "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Entities.GetContext().Feedback.RemoveRange(feedbackForRemoving);
+                    Entities.GetContext().SaveChanges();
+                    MessageBox.Show("Данные успешно удалены!");
 
+                    DGridFeedback.ItemsSource = Entities.GetContext().Feedback.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void BtnRed_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new FeedbackAddPage((sender as Button).DataContext as Feedback));
         }
     }
 }

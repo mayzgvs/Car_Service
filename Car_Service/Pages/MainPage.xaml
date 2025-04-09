@@ -5,49 +5,71 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Car_Service.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="800"
+      d:DesignHeight="700" d:DesignWidth="800"
       Title="MainPage">
 
     <Grid Style="{DynamicResource GridStyle}" Margin="0,5,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-            <Button x:Name="ButtonOtchet" Style="{DynamicResource PrimaryButtonStyle}" Content="Отчет" Width="224" Height="60" Margin="10" Click="ButtonOtchet_Click"/>
+        <Border Grid.Row="0" Grid.ColumnSpan="2" Padding="10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ComboBox x:Name="PageFilter" Width="180" Height="30" Margin="5" FontSize="14" SelectedIndex="0">
+                    <ComboBoxItem Content="Клиенты"/>
+                    <ComboBoxItem Content="Машины"/>
+                    <ComboBoxItem Content="Сотрудники"/>
+                    <ComboBoxItem Content="Склады"/>
+                    <ComboBoxItem Content="Запчасти"/>
+                    <ComboBoxItem Content="Услуги"/>
+                </ComboBox>
 
-            <Button x:Name="ButtonOtchetVIN" Style="{DynamicResource PrimaryButtonStyle}" Content="Отчет" Width="224" Height="60" Margin="10" Click="ButtonOtchetVIN_Click"/>
+                <TextBox x:Name="SearchTextBox" Style="{DynamicResource TextBoxStyle}" Width="250" Height="30" Margin="5"/>
+
+                <Button Content="Найти" Width="100" Height="30" Margin="5"
+                        Style="{DynamicResource ActiveButtonStyle}"
+                        Click="SearchButton_Click"/>
+            </StackPanel>
+        </Border>
+
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="156,0,0,0" Height="80" Width="488">
+            <Button x:Name="ButtonOtchet" Style="{DynamicResource PrimaryButtonStyle}" 
+                    Content="Отчет" Width="224" Height="60" Margin="10" Click="ButtonOtchet_Click"/>
+            <Button x:Name="ButtonOtchetVIN" Style="{DynamicResource PrimaryButtonStyle}" 
+                    Content="Отчет по VIN" Width="224" Height="60" Margin="10" Click="ButtonOtchetVIN_Click"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
-            <Button x:Name="ButtonCustomers" Style="{DynamicResource PrimaryButtonStyle}" Content="Список клиентов" Width="224" Height="60" Margin="0,10" Click="ButtonCustomers_Click"/>
-
-            <Button x:Name="ButtonCars" Style="{DynamicResource PrimaryButtonStyle}" Content="Список Машин" Width="224" Height="60" Margin="0,10" Click="ButtonCars_Click"/>
-
-            <Button x:Name="ButtonEmployees" Style="{DynamicResource PrimaryButtonStyle}" Content="Сотрудники" Width="224" Height="60" Margin="0,10" Click="ButtonEmployees_Click"/>
-
-            <Button x:Name="ButtonInventory" Style="{DynamicResource PrimaryButtonStyle}" Content="Склады" Width="224" Height="60" Margin="0,10" Click="ButtonInventory_Click"/>
-
-            <Button x:Name="ButtonParts" Style="{DynamicResource PrimaryButtonStyle}" Content="Запчасти" Width="224" Height="60" Margin="0,10" Click="ButtonPart_Click"/>
+        <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="103,0,0,0" Height="400" Width="224">
+            <Button x:Name="ButtonCustomers" Style="{DynamicResource PrimaryButtonStyle}" 
+                    Content="Список клиентов" Width="224" Height="60" Margin="0,10" Click="ButtonCustomers_Click"/>
+            <Button x:Name="ButtonCars" Style="{DynamicResource PrimaryButtonStyle}" 
+                    Content="Список машин" Width="224" Height="60" Margin="0,10" Click="ButtonCars_Click"/>
+            <Button x:Name="ButtonEmployees" Style="{DynamicResource PrimaryButtonStyle}" 
+                    Content="Сотрудники" Width="224" Height="60" Margin="0,10" Click="ButtonEmployees_Click"/>
+            <Button x:Name="ButtonInventory" Style="{DynamicResource PrimaryButtonStyle}" 
+                    Content="Склады" Width="224" Height="60" Margin="0,10" Click="ButtonInventory_Click"/>
+            <Button x:Name="ButtonParts" Style="{DynamicResource PrimaryButtonStyle}" 
+                    Content="Запчасти" Width="224" Height="60" Margin="0,10" Click="ButtonPart_Click"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
-            <Button x:Name="ButtonService" Style="{DynamicResource PrimaryButtonStyle}" Content="Услуги" Width="224" Height="60" Margin="0,10" Click="ButtonService_Click"/>
-
-            <Button x:Name="ButtonOrders" Style="{DynamicResource PrimaryButtonStyle}" Content="Заказы" Width="224" Height="60" Margin="0,10" Click="ButtonOrder_Click"/>
-
-            <Button x:Name="ButtonWork" Style="{DynamicResource PrimaryButtonStyle}" Content="Работы" Width="224" Height="60" Margin="0,10" Click="ButtonWork_Click"/>
-
-            <Button x:Name="ButtonPay" Style="{DynamicResource PrimaryButtonStyle}" Content="Оплата" Width="224" Height="60" Margin="0,10" Click="ButtonPay_Click"/>
-
-            <Button x:Name="ButtonFeedback" Style="{DynamicResource PrimaryButtonStyle}" Content="Отзывы" Width="224" Height="60" Margin="0,10" Click="ButtonOtzv_Click"/>
+        <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="400" Width="224">
+            <Button x:Name="ButtonService" Style="{DynamicResource PrimaryButtonStyle}" 
+                    Content="Услуги" Width="224" Height="60" Margin="0,10" Click="ButtonService_Click"/>
+            <Button x:Name="ButtonOrders" Style="{DynamicResource PrimaryButtonStyle}" 
+                    Content="Заказы" Width="224" Height="60" Margin="0,10" Click="ButtonOrder_Click"/>
+            <Button x:Name="ButtonWork" Style="{DynamicResource PrimaryButtonStyle}" 
+                    Content="Работы" Width="224" Height="60" Margin="0,10" Click="ButtonWork_Click"/>
+            <Button x:Name="ButtonPay" Style="{DynamicResource PrimaryButtonStyle}" 
+                    Content="Оплата" Width="224" Height="60" Margin="0,10" Click="ButtonPay_Click"/>
+            <Button x:Name="ButtonFeedback" Style="{DynamicResource PrimaryButtonStyle}" 
+                    Content="Отзывы" Width="224" Height="60" Margin="0,10" Click="ButtonOtzv_Click"/>
         </StackPanel>
-
-        <Button x:Name="ButtonExit" Style="{DynamicResource SecondaryButtonStyle}" Content="Выход" Width="80" Height="30" Margin="310,0,0,60" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="ButtonExit_Click" Grid.Column="1"/>
     </Grid>
 </Page>

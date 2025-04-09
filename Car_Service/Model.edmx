@@ -83,16 +83,6 @@
           <Property Name="Description" Type="text" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="Vehicles">
           <Key>
             <PropertyRef Name="VehicleID" />
@@ -101,7 +91,6 @@
           <Property Name="CustomerID" Type="int" Nullable="false" />
           <Property Name="Make" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Year" Type="int" Nullable="false" />
           <Property Name="VIN" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Work">
@@ -256,7 +245,6 @@
           <EntitySet Name="Parts" EntityType="Self.Parts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vehicles" EntityType="Self.Vehicles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Work" EntityType="Self.Work" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Feedback__Custom__5535A963" Association="Self.FK__Feedback__Custom__5535A963">
@@ -403,16 +391,6 @@
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <NavigationProperty Name="Work" Relationship="Self.FK__Work__ServiceID__4CA06362" FromRole="Services" ToRole="Work" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="Vehicles">
           <Key>
             <PropertyRef Name="VehicleID" />
@@ -421,7 +399,6 @@
           <Property Name="CustomerID" Type="Int32" Nullable="false" />
           <Property Name="Make" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Year" Type="Int32" Nullable="false" />
           <Property Name="VIN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Customers" Relationship="Self.FK__Vehicles__Custom__398D8EEE" FromRole="Vehicles" ToRole="Customers" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Vehicles" FromRole="Vehicles" ToRole="Orders" />
@@ -582,7 +559,6 @@
           <EntitySet Name="Parts" EntityType="Self.Parts" />
           <EntitySet Name="Payments" EntityType="Self.Payments" />
           <EntitySet Name="Services" EntityType="Self.Services" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Vehicles" EntityType="Self.Vehicles" />
           <EntitySet Name="Work" EntityType="Self.Work" />
           <AssociationSet Name="FK__Feedback__Custom__5535A963" Association="Self.FK__Feedback__Custom__5535A963">
@@ -722,17 +698,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Car_serviceModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Vehicles">
             <EntityTypeMapping TypeName="Car_serviceModel.Vehicles">
               <MappingFragment StoreEntitySet="Vehicles">
@@ -740,7 +705,6 @@
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="Make" ColumnName="Make" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="VIN" ColumnName="VIN" />
               </MappingFragment>
             </EntityTypeMapping>

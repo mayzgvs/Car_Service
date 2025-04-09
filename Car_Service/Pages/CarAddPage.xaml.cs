@@ -41,7 +41,7 @@ namespace Car_Service.Pages
             if (string.IsNullOrWhiteSpace(_vehicles.Model)) errors.AppendLine("Введите модель транспортного средства");
             if (string.IsNullOrWhiteSpace(_vehicles.VIN)) errors.AppendLine("Введите VIN номер транспортного средства");
             else if (!Regex.IsMatch(_vehicles.VIN, @"^[A-HJ-NPR-Z0-9]{17}$")) errors.AppendLine("Стандартный VIN состоит из 17 символов (цифры и латинские буквы, за исключением I, O и Q");
-            if (fName.SelectedItem==null) errors.AppendLine("Введите ФИО клиента");
+            if (fName.SelectedItem==null) errors.AppendLine("Выберите клиента");
 
             if (errors.Length > 0) {MessageBox.Show(errors.ToString()); return; }
             if (_vehicles.VehicleID == 0) Entities.GetContext().Vehicles.Add(_vehicles);

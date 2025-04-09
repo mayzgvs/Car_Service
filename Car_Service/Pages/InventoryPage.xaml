@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Car_Service.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="InventoryPage">
+      Title="InventoryPage" IsVisibleChanged="InventoryPage_IsVisibleChanged">
 
     <Grid Style="{DynamicResource GridStyle}" Margin="0,5,0,0">
 

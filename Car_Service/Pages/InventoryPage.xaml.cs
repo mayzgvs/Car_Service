@@ -26,6 +26,15 @@ namespace Car_Service.Pages
             DGridInventory.ItemsSource = Entities.GetContext().Inventory.ToList();
         }
 
+        private void InventoryPage_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+                DGridInventory.ItemsSource = Entities.GetContext().Inventory.ToList();
+            }
+        }
+
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
@@ -33,17 +42,33 @@ namespace Car_Service.Pages
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new InventoryAddPage);
+            NavigationService.Navigate(new InventoryAddPage(null));
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
+            var inventoryForRemoving = DGridInventory.SelectedItems.Cast<Inventory>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить записи в количестве {inventoryForRemoving.Count()} элементов?",
+                "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Entities.GetContext().Inventory.RemoveRange(inventoryForRemoving);
+                    Entities.GetContext().SaveChanges();
+                    MessageBox.Show("Данные успешно удалены!");
 
+                    DGridInventory.ItemsSource = Entities.GetContext().Inventory.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void BtnRed_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new InventoryAddPage((sender as Button).DataContext as Inventory));
         }
     }
 }

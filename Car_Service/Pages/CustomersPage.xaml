@@ -6,9 +6,9 @@
       xmlns:local="clr-namespace:Car_Service.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CustomersPage">
+      Title="CustomersPage" IsVisibleChanged="CustomersPage_IsVisibleChanged">
 
-    <Grid Style="{DynamicResource GridStyle}" Margin="0,5,0,0">
+    <Grid x:Name="DGridCust" Style="{DynamicResource GridStyle}" Margin="0,5,0,0">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="202*"/>
@@ -19,6 +19,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ФИО клиента" Binding="{Binding FullName}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Адрес" Binding="{Binding Adress}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 

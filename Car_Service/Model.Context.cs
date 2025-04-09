@@ -21,13 +21,11 @@ namespace Car_Service
         }
 
         private static Entities _context;
-
         public static Entities GetContext()
         {
-            if (_context == null) _context = new Entities();
-            return _context;
+            if (_context == null) _context = new Entities(); return _context;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -41,7 +39,6 @@ namespace Car_Service
         public virtual DbSet<Parts> Parts { get; set; }
         public virtual DbSet<Payments> Payments { get; set; }
         public virtual DbSet<Services> Services { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Vehicles> Vehicles { get; set; }
         public virtual DbSet<Work> Work { get; set; }
     }

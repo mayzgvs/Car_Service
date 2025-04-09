@@ -25,6 +25,14 @@ namespace Car_Service.Pages
             InitializeComponent();
             DGridCustomer.ItemsSource = Entities.GetContext().Customers.ToList();
         }
+        private void CustomersPage_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+                DGridCustomer.ItemsSource = Entities.GetContext().Customers.ToList();
+            }
+        }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
@@ -33,17 +41,33 @@ namespace Car_Service.Pages
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new CustomersAddPage);
+            NavigationService.Navigate(new CustomersAddPage(null));
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
+            var customerForRemoving = DGridCustomer.SelectedItems.Cast<Customers>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить записи в количестве {customerForRemoving.Count()} элементов?",
+                "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Entities.GetContext().Customers.RemoveRange(customerForRemoving);
+                    Entities.GetContext().SaveChanges();
+                    MessageBox.Show("Данные успешно удалены!");
 
+                    DGridCustomer.ItemsSource = Entities.GetContext().Customers.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void BtnRed_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new CustomersAddPage((sender as Button).DataContext as Customers));
         }
     }
 }

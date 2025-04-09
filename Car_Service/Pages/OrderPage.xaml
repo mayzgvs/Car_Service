@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Car_Service.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="OrderPage">
+      Title="OrderPage" IsVisibleChanged="OrderPage_IsVisibleChanged">
 
     <Grid Style="{DynamicResource GridStyle}" Margin="0,5,0,0">
         <Grid.RowDefinitions>
@@ -16,10 +16,11 @@
 
         <DataGrid x:Name="DGridOrders" AutoGenerateColumns="False" IsReadOnly="True" Style="{StaticResource DataGridStyle}" Margin="0,0,0,2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Имя клиента" Binding="{Binding Customers.FirstName}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Фамилия клиента" Binding="{Binding Customers.LastName}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Транспортное средство" Binding="{Binding Vehicles.Model}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Описание проблемы" Binding="{Binding Problem}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="ФИО клиента" Binding="{Binding Customers.FullName}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Машина" Binding="{Binding Vehicles.Model}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата заказа" Binding="{Binding DateOrder}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Описание" Binding="{Binding Problem}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 

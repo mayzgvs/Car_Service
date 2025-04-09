@@ -17,8 +17,7 @@
         <DataGrid x:Name="DGridPayments" AutoGenerateColumns="False" IsReadOnly="True" Style="{StaticResource DataGridStyle}" Margin="0,0,0,2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Заказ" Binding="{Binding Orders.OrderID}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Имя клиента" Binding="{Binding Customers.FirstName}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Фамилия клиента" Binding="{Binding Customers.LastName}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="ФИО клиента" Binding="{Binding Customers.FullName}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Итоговая стоимость" Binding="{Binding Amount}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
