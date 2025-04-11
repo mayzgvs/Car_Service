@@ -283,7 +283,7 @@
                     <Setter Property="BorderThickness" Value="0"/>
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                     <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-                    <Setter Property="Template">
+                    <!--<Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
                                 <Border Background="{TemplateBinding Background}"
@@ -293,7 +293,7 @@
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
-                    </Setter>
+                    </Setter>-->
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="#E6E6E6"/>

@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="Car_serviceModel.Orders" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Car_serviceModel.Parts" Width="1.5" PointX="8.25" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Car_serviceModel.Payments" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Car_serviceModel.Services" Width="1.5" PointX="8.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Car_serviceModel.Services" Width="1.5" PointX="11.75" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="Car_serviceModel.Vehicles" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Car_serviceModel.Work" Width="1.5" PointX="10.5" PointY="4.625" IsExpanded="true" />
         <AssociationConnector Association="Car_serviceModel.FK__Feedback__Custom__5535A963" ManuallyRouted="false" />

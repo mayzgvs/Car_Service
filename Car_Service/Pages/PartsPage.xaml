@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Car_Service.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PartsPage">
+      Title="PartsPage" IsVisibleChanged="PartsPage_IsVisibleChanged">
 
     <Grid>
         <Grid.RowDefinitions>

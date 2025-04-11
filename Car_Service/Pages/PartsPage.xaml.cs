@@ -24,6 +24,19 @@ namespace Car_Service.Pages
         {
             InitializeComponent();
             LViewParts.ItemsSource = Entities.GetContext().Parts.ToList();
+            LoadData();
+        }
+        private void LoadData()
+        {
+            //LViewParts.ItemsSource = Entities.GetContext().Parts.Include(p => p.Inventory).ToList();
+        }
+        private void PartsPage_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+                LoadData();
+            }
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -33,17 +46,42 @@ namespace Car_Service.Pages
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
+            var partsForRemoving = LViewParts.SelectedItems.Cast<Parts>().ToList();
 
+            if (partsForRemoving.Count == 0)
+            {
+                MessageBox.Show("Выберите записи для удаления!", "Внимание!",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (MessageBox.Show($"Вы точно хотите удалить {partsForRemoving.Count} записей?", "Внимание!",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Entities.GetContext().Parts.RemoveRange(partsForRemoving);
+                    Entities.GetContext().SaveChanges();
+                    MessageBox.Show("Записи успешно удалены!");
+                    LoadData();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при удалении: {ex.Message}", "Ошибка!",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new PartsAddPage);
+            NavigationService.Navigate(new PartsAddPage(null));
         }
 
         private void BtnRed_Click(object sender, RoutedEventArgs e)
         {
-
+            var selectedParts = (sender as Button).DataContext as Parts;
+            NavigationService.Navigate(new PartsAddPage(selectedParts));
         }
     }
 }
