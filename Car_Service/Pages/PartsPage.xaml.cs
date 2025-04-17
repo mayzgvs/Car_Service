@@ -20,16 +20,29 @@ namespace Car_Service.Pages
     /// </summary>
     public partial class PartsPage : Page
     {
-        public PartsPage()
+        private string _searchText;
+        public PartsPage(string searchText = "")
         {
             InitializeComponent();
             LViewParts.ItemsSource = Entities.GetContext().Parts.ToList();
+
+            _searchText = searchText;
             LoadData();
         }
         private void LoadData()
         {
-            //LViewParts.ItemsSource = Entities.GetContext().Parts.Include(p => p.Inventory).ToList();
+            var query = Entities.GetContext().Parts.AsQueryable();
+
+            if (!string.IsNullOrEmpty(_searchText))
+            {
+                query = query.Where(c =>
+                    c.PartName.ToLower().Contains(_searchText));
+                    //c.Price.ToLower().Contains(_searchText));
+            }
+
+            LViewParts.ItemsSource = query.ToList();
         }
+
         private void PartsPage_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Visibility == Visibility.Visible)

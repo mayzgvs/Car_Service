@@ -43,6 +43,7 @@ namespace Car_Service.Pages
 
             DGridCustomer.ItemsSource = query.ToList();
         }
+
         private void CustomersPage_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Visibility == Visibility.Visible)

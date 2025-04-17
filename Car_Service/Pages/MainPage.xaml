@@ -8,7 +8,7 @@
       d:DesignHeight="700" d:DesignWidth="800"
       Title="MainPage">
 
-    <Grid Style="{DynamicResource GridStyle}" Margin="0,5,0,0">
+    <Grid x:Name="MainGrid" Style="{DynamicResource GridStyle}" Margin="0,5,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -21,7 +21,7 @@
 
         <Border Grid.Row="0" Grid.ColumnSpan="2" Padding="10">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <ComboBox x:Name="PageFilter" Width="180" Height="30" Margin="5" FontSize="14" SelectedIndex="0">
+                <ComboBox x:Name="PageCategory" Width="180" Height="30" Margin="5" FontSize="14" SelectedIndex="0"> 
                     <ComboBoxItem Content="Клиенты"/>
                     <ComboBoxItem Content="Машины"/>
                     <ComboBoxItem Content="Сотрудники"/>
@@ -31,10 +31,6 @@
                 </ComboBox>
 
                 <TextBox x:Name="SearchTextBox" Style="{DynamicResource TextBoxStyle}" Width="250" Height="30" Margin="5"/>
-
-                <Button Content="Найти" Width="100" Height="30" Margin="5"
-                        Style="{DynamicResource ActiveButtonStyle}"
-                        Click="SearchButton_Click"/>
             </StackPanel>
         </Border>
 

@@ -20,10 +20,28 @@ namespace Car_Service.Pages
     /// </summary>
     public partial class InventoryPage : Page
     {
-        public InventoryPage()
+        private string _searchText;
+        public InventoryPage(string searchText = "")
         {
             InitializeComponent();
             DGridInventory.ItemsSource = Entities.GetContext().Inventory.ToList();
+
+            _searchText = searchText;
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            var query = Entities.GetContext().Inventory.AsQueryable();
+
+            if (!string.IsNullOrEmpty(_searchText))
+            {
+                query = query.Where(c =>
+                    c.InventoryName.ToLower().Contains(_searchText) ||
+                    c.Adress.ToLower().Contains(_searchText));
+            }
+
+            DGridInventory.ItemsSource = query.ToList();
         }
 
         private void InventoryPage_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)

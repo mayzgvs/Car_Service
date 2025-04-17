@@ -29,5 +29,6 @@ namespace Car_Service
         public virtual Customers Customers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }
+        public object PageFilter_SelectionChanged { get; internal set; }
     }
 }

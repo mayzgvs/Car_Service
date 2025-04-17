@@ -20,10 +20,28 @@ namespace Car_Service.Pages
     /// </summary>
     public partial class ServicePage : Page
     {
-        public ServicePage()
+        private string _searchText;
+        public ServicePage(string searchText = "")
         {
             InitializeComponent();
             DGridServices.ItemsSource = Entities.GetContext().Services.ToList();
+
+            _searchText = searchText;
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            var query = Entities.GetContext().Services.AsQueryable();
+
+            if (!string.IsNullOrEmpty(_searchText))
+            {
+                query = query.Where(c =>
+                    c.ServiceName.ToLower().Contains(_searchText) ||
+                    c.Description.ToLower().Contains(_searchText));
+            }
+
+            DGridServices.ItemsSource = query.ToList();
         }
 
         private void ServicePage_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)

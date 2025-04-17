@@ -20,10 +20,28 @@ namespace Car_Service.Pages
     /// </summary>
     public partial class EmployeesPage : Page
     {
-        public EmployeesPage()
+        private string _searchText;
+        public EmployeesPage(string searchText = "")
         {
             InitializeComponent();
             DGridEmployee.ItemsSource = Entities.GetContext().Employees.ToList();
+
+            _searchText = searchText;
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            var query = Entities.GetContext().Employees.AsQueryable();
+
+            if (!string.IsNullOrEmpty(_searchText))
+            {
+                query = query.Where(c =>
+                    c.FullName.ToLower().Contains(_searchText) ||
+                    c.Position.ToLower().Contains(_searchText));
+            }
+
+            DGridEmployee.ItemsSource = query.ToList();
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
