@@ -148,6 +148,7 @@ namespace Car_Service.Pages
 
         private void CancelSearchButton_Click(object sender, RoutedEventArgs e)
         {
+            //Выход из поисковой строки
             ExitSearchMode();
         }
 
@@ -219,8 +220,7 @@ namespace Car_Service.Pages
 
                 case "Услуги":
                     return Entities.GetContext().Services
-                        .Where(s => s.ServiceName.ToLower().Contains(searchText) ||
-                                   s.Description.ToLower().Contains(searchText))
+                        .Where(s => s.ServiceName.ToLower().Contains(searchText))
                         .Select(s => new { s.ServiceName, s.Description, s.Price })
                         .ToList<dynamic>();
 
