@@ -9,24 +9,79 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="FeedbackAddPage">
 
-    <Grid Style="{StaticResource GridStyle}" Margin="0,5,0,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+    <Grid Style="{StaticResource GridStyle}">
+        <!-- Основной контейнер с фиксированными отступами -->
+        <Border Width="724" Padding="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-        <TextBlock Text="ФИО клиента" Style="{Binding TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto"/>
-        <TextBlock Text="Отзыв клиента" Style="{Binding TextBlockStyle}" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto"/>
+                <!-- ФИО клиента -->
+                <Grid Grid.Row="0" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="ФИО клиента" 
+                               Style="{StaticResource TextBlockStyle}" 
+                               VerticalAlignment="Center"/>
+                    <xctk:WatermarkComboBox Name="fName" 
+                                           Grid.Column="2"
+                                           SelectedValuePath="Customers" 
+                                           DisplayMemberPath="FullName" 
+                                           Height="32" 
+                                           VerticalAlignment="Center"
+                                           Watermark="Выберите клиента"/>
+                </Grid>
 
-        <xctk:WatermarkComboBox Name="fName" SelectedValuePath="Customers" DisplayMemberPath="FullName" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center" Watermark="Выберите клиента"/>
-        <TextBox Text="{Binding Feedback1}" Style="{Binding TextBoxStyle}" Grid.Column="1" Grid.Row="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <!-- Отзыв клиента -->
+                <Grid Grid.Row="1" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Отзыв клиента" 
+                               Style="{StaticResource TextBlockStyle}" 
+                               VerticalAlignment="Center"/>
+                    <TextBox Text="{Binding Feedback1}" 
+                             Grid.Column="2"
+                             Style="{StaticResource TextBoxStyle}" 
+                             Height="32" 
+                             VerticalAlignment="Center"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto"
+                             MinHeight="80"/>
+                </Grid>
 
-        <Button x:Name="bSave" Style="{StaticResource PrimaryButtonStyle}" Content="Сохранить" Grid.Row="5" Grid.Column="1" Width="132" Click="bSave_Click" Height="42" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="190,0,0,0"/>
-        <Button x:Name="bBack" Style="{StaticResource ActiveButtonStyle}" Content="Назад" Grid.Row="5" Grid.Column="1" Width="133"  Margin="397,0,0,0" Height="42" VerticalAlignment="Center" HorizontalAlignment="Left" Click="bBack_Click"/>
+                <!-- Кнопки -->
+                <StackPanel Grid.Row="2" 
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Bottom"
+                            Margin="0,30,0,0"
+                            Height="50">
+                    <Button x:Name="bSave" 
+                            Style="{StaticResource PrimaryButtonStyle}" 
+                            Content="Сохранить" 
+                            Width="150" 
+                            Height="42"
+                            Margin="0,0,10,0"
+                            Click="bSave_Click"/>
+                    <Button x:Name="bBack" 
+                            Style="{StaticResource ActiveButtonStyle}" 
+                            Content="Назад" 
+                            Width="150" 
+                            Height="42"
+                            Click="bBack_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

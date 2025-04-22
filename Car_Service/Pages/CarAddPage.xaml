@@ -10,29 +10,111 @@
       Title="CarAddPage">
 
     <Grid Style="{StaticResource GridStyle}" Margin="0,5,0,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+        <!-- Основной контейнер с фиксированными отступами -->
+        <Border Width="724" Padding="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-        <TextBlock Text="Марка транспортного средства" Style="{Binding TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto"/>
-        <TextBlock Text="Модель транспортного средства" Style="{Binding TextBlockStyle}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto"/>
-        <TextBlock Text="VIN-номер транспортного средства" Style="{Binding TextBlockStyle}" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto"/>
-        <TextBlock Text="ФИО клиента" Style="{Binding TextBlockStyle}" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto"/>
+                <!-- Марка -->
+                <Grid Grid.Row="0" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Марка транспортного средства" 
+                               Style="{StaticResource TextBlockStyle}" 
+                               VerticalAlignment="Center"/>
+                    <TextBox Text="{Binding Make}" 
+                             Grid.Column="2"
+                             Style="{StaticResource TextBoxStyle}" 
+                             Height="32" 
+                             VerticalAlignment="Center"/>
+                </Grid>
 
-        <TextBox Text="{Binding Make}" Style="{Binding TextBoxStyle}" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Text="{Binding Model}" Style="{Binding TextBoxStyle}" Grid.Row="1" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Text="{Binding VIN}" Style="{Binding TextBoxStyle}" Grid.Row="2" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <xctk:WatermarkComboBox Name="fName" SelectedValuePath="Customers" DisplayMemberPath="FullName" Grid.Row="3" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center" Watermark="Выберите клиента"/>
+                <!-- Модель -->
+                <Grid Grid.Row="1" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Модель транспортного средства" 
+                               Style="{StaticResource TextBlockStyle}" 
+                               VerticalAlignment="Center"/>
+                    <TextBox Text="{Binding Model}" 
+                             Grid.Column="2"
+                             Style="{StaticResource TextBoxStyle}" 
+                             Height="32" 
+                             VerticalAlignment="Center"/>
+                </Grid>
 
-        <Button x:Name="bSave" Style="{StaticResource PrimaryButtonStyle}" Content="Сохранить" Grid.Row="5" Grid.Column="1" Width="132" Click="bSave_Click" Height="42" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="190,0,0,0"/>
-        <Button x:Name="bBack" Style="{StaticResource ActiveButtonStyle}" Content="Назад" Grid.Row="5" Grid.Column="1" Width="133"  Margin="397,0,0,0" Height="42" VerticalAlignment="Center" HorizontalAlignment="Left" Click="bBack_Click"/>
+                <!-- VIN -->
+                <Grid Grid.Row="2" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="VIN-номер транспортного средства" 
+                               Style="{StaticResource TextBlockStyle}" 
+                               VerticalAlignment="Center"/>
+                    <TextBox Text="{Binding VIN}" 
+                             Grid.Column="2"
+                             Style="{StaticResource TextBoxStyle}" 
+                             Height="32" 
+                             VerticalAlignment="Center"/>
+                </Grid>
+
+                <!-- Клиент -->
+                <Grid Grid.Row="3" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="ФИО клиента" 
+                               Style="{StaticResource TextBlockStyle}" 
+                               VerticalAlignment="Center"/>
+                    <xctk:WatermarkComboBox Name="fName" 
+                                           Grid.Column="2"
+                                           SelectedValuePath="Customers" 
+                                           DisplayMemberPath="FullName" 
+                                           Height="32" 
+                                           VerticalAlignment="Center"
+                                           Watermark="Выберите клиента"/>
+                </Grid>
+
+                <!-- Кнопки -->
+                <StackPanel Grid.Row="5" 
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Bottom"
+                            Margin="0,30,0,0"
+                            Height="50">
+                    <Button x:Name="bSave" 
+                            Style="{StaticResource PrimaryButtonStyle}" 
+                            Content="Сохранить" 
+                            Width="150" 
+                            Height="42"
+                            Margin="0,0,10,0"
+                            Click="bSave_Click"/>
+                    <Button x:Name="bBack" 
+                            Style="{StaticResource ActiveButtonStyle}" 
+                            Content="Назад" 
+                            Width="150" 
+                            Height="42"
+                            Click="bBack_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

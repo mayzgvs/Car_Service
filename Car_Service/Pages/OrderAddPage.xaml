@@ -10,32 +10,133 @@
       Title="OrderAddPage">
 
     <Grid Style="{StaticResource GridStyle}" Margin="0,5,0,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+        <!-- Основной контейнер с фиксированными отступами -->
+        <Border Width="724" Padding="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-        <TextBlock Text="ФИО клиента" Style="{Binding TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto"/>
-        <TextBlock Text="Транспортное средство" Style="{Binding TextBlockStyle}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto"/>
-        <TextBlock Text="Дата заказа" Style="{Binding TextBlockStyle}" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto"/>
-        <TextBlock Text="Статус заказа" Style="{Binding TextBlockStyle}" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto"/>
-        <TextBlock Text="Описание проблемы" Style="{Binding TextBlockStyle}" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto"/>
+                <!-- ФИО клиента -->
+                <Grid Grid.Row="0" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="ФИО клиента" 
+                               Style="{StaticResource TextBlockStyle}" 
+                               VerticalAlignment="Center"/>
+                    <xctk:WatermarkComboBox Name="fullName" 
+                                           Grid.Column="2"
+                                           SelectedValuePath="Customers" 
+                                           DisplayMemberPath="FullName" 
+                                           Height="32" 
+                                           VerticalAlignment="Center"
+                                           Watermark="Выберите клиента"/>
+                </Grid>
 
-        <xctk:WatermarkComboBox Name="fullName" SelectedValuePath="Customers" DisplayMemberPath="FullName" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center" Watermark="Выберите клиента"/>
-        <xctk:WatermarkComboBox Name="CustCar" SelectedValuePath="Vehicles" DisplayMemberPath="Model" Grid.Row="1" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center" Watermark="Выберите транспортное средство"/>
-        <DatePicker SelectedDate="{Binding DateOrder}" Style="{Binding TextBoxStyle}" Grid.Row="2" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <xctk:WatermarkTextBox Text="{Binding Status}" Style="{Binding TextBoxStyle}" Grid.Row="3" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center" Watermark="Выполнен/В процессе"/>
-        <TextBox Text="{Binding Problem}" Style="{Binding TextBoxStyle}" Grid.Row="4" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        
-        <Button x:Name="bSave" Style="{StaticResource PrimaryButtonStyle}" Content="Сохранить" Grid.Row="5" Grid.Column="1" Width="132" Click="bSave_Click" Height="42" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="190,0,0,0"/>
-        <Button x:Name="bBack" Style="{StaticResource ActiveButtonStyle}" Content="Назад" Grid.Row="5" Grid.Column="1" Width="133"  Margin="397,0,0,0" Height="42" VerticalAlignment="Center" HorizontalAlignment="Left" Click="bBack_Click"/>
+                <!-- Транспортное средство -->
+                <Grid Grid.Row="1" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Транспортное средство" 
+                               Style="{StaticResource TextBlockStyle}" 
+                               VerticalAlignment="Center"/>
+                    <xctk:WatermarkComboBox Name="CustCar" 
+                                           Grid.Column="2"
+                                           SelectedValuePath="Vehicles" 
+                                           DisplayMemberPath="Model" 
+                                           Height="32" 
+                                           VerticalAlignment="Center"
+                                           Watermark="Выберите транспортное средство"/>
+                </Grid>
+
+                <!-- Дата заказа -->
+                <Grid Grid.Row="2" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Дата заказа" 
+                               Style="{StaticResource TextBlockStyle}" 
+                               VerticalAlignment="Center"/>
+                    <DatePicker SelectedDate="{Binding DateOrder}" 
+                               Grid.Column="2"
+                               Height="32" 
+                               Width="300"
+                               VerticalAlignment="Center"/>
+                </Grid>
+
+                <!-- Статус заказа -->
+                <Grid Grid.Row="3" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Статус заказа" 
+                               Style="{StaticResource TextBlockStyle}" 
+                               VerticalAlignment="Center"/>
+                    <xctk:WatermarkTextBox Text="{Binding Status}" 
+                                         Grid.Column="2"
+                                         Style="{StaticResource TextBoxStyle}" 
+                                         Height="32" 
+                                         VerticalAlignment="Center"
+                                         Watermark="Выполнен/В процессе"/>
+                </Grid>
+
+                <!-- Описание проблемы -->
+                <Grid Grid.Row="4" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Описание проблемы" 
+                               Style="{StaticResource TextBlockStyle}" 
+                               VerticalAlignment="Center"/>
+                    <TextBox Text="{Binding Problem}" 
+                             Grid.Column="2"
+                             Style="{StaticResource TextBoxStyle}" 
+                             Height="80"
+                             VerticalAlignment="Center"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto"/>
+                </Grid>
+
+                <!-- Кнопки -->
+                <StackPanel Grid.Row="5" 
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"
+                            Height="50">
+                    <Button x:Name="bSave" 
+                            Style="{StaticResource PrimaryButtonStyle}" 
+                            Content="Сохранить" 
+                            Width="150" 
+                            Height="42"
+                            Margin="0,0,10,0"
+                            Click="bSave_Click"/>
+                    <Button x:Name="bBack" 
+                            Style="{StaticResource ActiveButtonStyle}" 
+                            Content="Назад" 
+                            Width="150" 
+                            Height="42"
+                            Click="bBack_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

@@ -9,27 +9,90 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ServiceAddPage">
 
-    <Grid Style="{StaticResource GridStyle}" Margin="0,5,0,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+    <Grid Style="{StaticResource GridStyle}">
+        <!-- Основной контейнер с фиксированными отступами -->
+        <Border Width="724" Padding="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-        <TextBlock Text="Название услуги" Style="{Binding TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto"/>
-        <TextBlock Text="Описание" Style="{Binding TextBlockStyle}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto"/>
-        <TextBlock Text="Стоимость" Style="{Binding TextBlockStyle}" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto"/>
+                <!-- Название услуги -->
+                <Grid Grid.Row="0" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Название услуги" 
+                                Style="{StaticResource TextBlockStyle}" 
+                                VerticalAlignment="Center"/>
+                    <TextBox Text="{Binding ServiceName}" 
+                             Grid.Column="2"
+                             Style="{StaticResource TextBoxStyle}" 
+                             Height="32" 
+                             VerticalAlignment="Center"/>
+                </Grid>
 
-        <TextBox Text="{Binding ServiceName}" Style="{Binding TextBoxStyle}" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Text="{Binding Description}" Style="{Binding TextBoxStyle}" Grid.Row="1" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Text="{Binding Price}" Style="{Binding TextBoxStyle}" Grid.Row="2" Grid.Column="1" Height="32" Width="530" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <!-- Описание -->
+                <Grid Grid.Row="1" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Описание" 
+                Style="{StaticResource TextBlockStyle}" 
+                VerticalAlignment="Center"/>
+                    <TextBox Text="{Binding Description}" 
+             Grid.Column="2"
+             Style="{StaticResource TextBoxStyle}" 
+             Height="32" 
+             VerticalAlignment="Center"/>
+                </Grid>
 
-        <Button x:Name="bSave" Style="{StaticResource PrimaryButtonStyle}" Content="Сохранить" Grid.Row="5" Grid.Column="1" Width="132" Click="bSave_Click" Height="42" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="190,0,0,0"/>
-        <Button x:Name="bBack" Style="{StaticResource ActiveButtonStyle}" Content="Назад" Grid.Row="5" Grid.Column="1" Width="133"  Margin="397,0,0,0" Height="42" VerticalAlignment="Center" HorizontalAlignment="Left" Click="bBack_Click"/>
+                <!-- Стоимость -->
+                <Grid Grid.Row="2" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Стоимость" 
+                               Style="{StaticResource TextBlockStyle}" 
+                               VerticalAlignment="Center"/>
+                    <TextBox Text="{Binding Price}" 
+                             Grid.Column="2"
+                             Style="{StaticResource TextBoxStyle}" 
+                             Height="32" 
+                             VerticalAlignment="Center"/>
+                </Grid>
+
+                <StackPanel Grid.Row="3" 
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Bottom"
+                            Margin="0,30,0,0"
+                            Height="50">
+                    <Button x:Name="bSave" 
+                            Style="{StaticResource PrimaryButtonStyle}" 
+                            Content="Сохранить" 
+                            Width="150" 
+                            Height="42"
+                            Margin="0,0,10,0"
+                            Click="bSave_Click"/>
+                    <Button x:Name="bBack" 
+                            Style="{StaticResource ActiveButtonStyle}" 
+                            Content="Назад" 
+                            Width="150" 
+                            Height="42"
+                            Click="bBack_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Page>
