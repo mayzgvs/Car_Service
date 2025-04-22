@@ -135,6 +135,9 @@
     <Compile Include="Pages\ServiceAddPage.xaml.cs">
       <DependentUpon>ServiceAddPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\WorkAddPage.xaml.cs">
+      <DependentUpon>WorkAddPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Parts.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -247,6 +250,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ServicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\WorkAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

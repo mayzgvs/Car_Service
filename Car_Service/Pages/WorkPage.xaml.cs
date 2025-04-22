@@ -33,17 +33,33 @@ namespace Car_Service.Pages
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new WorkAddPage);
+            NavigationService.Navigate(new WorkAddPage(null));
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
+            var workForRemoving = DGridWork.SelectedItems.Cast<Work>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить записи в количестве {workForRemoving.Count()} элементов?",
+                "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Entities.GetContext().Work.RemoveRange(workForRemoving);
+                    Entities.GetContext().SaveChanges();
+                    MessageBox.Show("Данные успешно удалены!");
 
+                    DGridWork.ItemsSource = Entities.GetContext().Work.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void BtnRed_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new WorkAddPage((sender as Button).DataContext as Work));
         }
     }
 }
