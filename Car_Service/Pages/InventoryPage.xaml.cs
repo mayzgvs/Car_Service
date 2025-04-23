@@ -86,7 +86,15 @@ namespace Car_Service.Pages
 
         private void BtnRed_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new InventoryAddPage((sender as Button).DataContext as Inventory));
+            if (DGridInventory.SelectedItem != null)
+            {
+                NavigationService.Navigate(new InventoryAddPage(DGridInventory.SelectedItem as Inventory));
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите запись для редактирования", "Внимание",
+                              MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

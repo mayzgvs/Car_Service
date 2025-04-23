@@ -20,6 +20,13 @@
                 <DataGridTextColumn Header="Модель" Binding="{Binding Model}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="VIN" Binding="{Binding VIN}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="ФИО клиента" Binding="{Binding Customers.FullName}" Width="*"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 

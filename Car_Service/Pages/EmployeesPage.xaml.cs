@@ -49,19 +49,38 @@ namespace Car_Service.Pages
             NavigationService.GoBack();
         }
 
-        private void BtnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            //NavigationService.Navigate(new EmployeesAddPage);
-        }
-
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
+            var employeeForRemoving = DGridEmployee.SelectedItems.Cast<Employees>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить записи в количестве {employeeForRemoving.Count()} элементов?",
+                "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Entities.GetContext().Employees.RemoveRange(employeeForRemoving);
+                    Entities.GetContext().SaveChanges();
+                    MessageBox.Show("Данные успешно удалены!");
 
+                    DGridEmployee.ItemsSource = Entities.GetContext().Employees.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void BtnRed_Click(object sender, RoutedEventArgs e)
         {
-
+            if (DGridEmployee.SelectedItem != null)
+            {
+                NavigationService.Navigate(new EmployeeEditPage(DGridEmployee.SelectedItem as Employees));
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите запись для редактирования", "Внимание",
+                              MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

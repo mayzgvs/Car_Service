@@ -47,7 +47,7 @@ namespace Car_Service.Pages
 
         private void SearchTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            // Теперь выход из режима поиска только по кнопке отмены
+            // Выход из режима поиска только по кнопке отмены
         }
 
         private void EnterSearchMode()
@@ -187,7 +187,7 @@ namespace Car_Service.Pages
                     return Entities.GetContext().Customers
                         .Where(c => c.FullName.ToLower().Contains(searchText) ||
                                    c.Phone.Contains(searchText))
-                        .Select(c => new { c.FullName, c.Phone })
+                        .Select(c => new { c.FullName, c.Phone, c.Email, c.Adress })
                         .ToList<dynamic>();
 
                 case "Машины":
@@ -202,7 +202,7 @@ namespace Car_Service.Pages
                     return Entities.GetContext().Employees
                         .Where(e => e.FullName.ToLower().Contains(searchText) ||
                                    e.Position.ToLower().Contains(searchText))
-                        .Select(e => new { e.FullName, e.Position })
+                        .Select(e => new { e.FullName, e.Position, e.Email, e.Phone })
                         .ToList<dynamic>();
 
                 case "Склады":

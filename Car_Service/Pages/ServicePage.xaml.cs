@@ -86,7 +86,15 @@ namespace Car_Service.Pages
 
         private void BtnRed_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ServiceAddPage((sender as Button).DataContext as Services));
+            if (DGridServices.SelectedItem != null)
+            {
+                NavigationService.Navigate(new ServiceAddPage(DGridServices.SelectedItem as Services));
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите запись для редактирования", "Внимание",
+                              MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

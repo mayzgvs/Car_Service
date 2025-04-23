@@ -67,5 +67,10 @@ namespace Car_Service.Pages
         {
             NavigationService.GoBack();
         }
+
+        private void fName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
