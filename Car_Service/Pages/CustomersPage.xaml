@@ -25,6 +25,7 @@
         </DataGrid>
 
         <Button Content="Назад" 
+                ToolTip="Нажмите, чтобы вернуться на главную страницу"
                 Style="{DynamicResource ActiveButtonStyle}" 
                 HorizontalAlignment="Right" 
                 Grid.Row="1" 

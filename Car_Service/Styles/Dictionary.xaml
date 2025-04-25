@@ -57,7 +57,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AccentButtonStyle" TargetType="Button" BasedOn="{StaticResource PrimaryButtonStyle}">
+    <!--<Style x:Key="AccentButtonStyle" TargetType="Button" BasedOn="{StaticResource PrimaryButtonStyle}">
         <Setter Property="Background" Value="#FFE53E3E" />
         <Setter Property="Template">
             <Setter.Value>
@@ -80,7 +80,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
     <Style x:Key="ActiveButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="#f57d31" />
@@ -300,7 +300,6 @@
     <Style x:Key="StackPanelStyle" TargetType="StackPanel">
         <Setter Property="Background" Value="#FF2D3748"/>
         <Setter Property="Margin" Value="0 5 0 5"/>
-
         <Style.Resources>
             <Style TargetType="Border">
                 <Setter Property="BorderBrush" Value="#FF1E3A8A"/>
@@ -308,7 +307,6 @@
                 <Setter Property="CornerRadius" Value="4"/>
             </Style>
         </Style.Resources>
-
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#FF4A5568"/>

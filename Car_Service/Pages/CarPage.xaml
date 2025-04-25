@@ -30,7 +30,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="Назад" Style="{DynamicResource ActiveButtonStyle}" HorizontalAlignment="Right" Grid.Row="1" Width="140" x:Name="BtnBack" Click="BtnBack_Click" Margin="0,0,10,0" Height="40" VerticalAlignment="Center">
+        <Button Content="Назад" ToolTip="Нажмите, чтобы вернуться на главную страницу" Style="{DynamicResource ActiveButtonStyle}" HorizontalAlignment="Right" Grid.Row="1" Width="140" x:Name="BtnBack" Click="BtnBack_Click" Margin="0,0,10,0" Height="40" VerticalAlignment="Center">
         </Button>
 
         <Button Content="Добавить" Style="{DynamicResource PrimaryButtonStyle}" HorizontalAlignment="Left" Grid.Row="1" Width="140" x:Name="BtnAdd" Click="BtnAdd_Click" Margin="10,0,0,0" Height="40" VerticalAlignment="Center">

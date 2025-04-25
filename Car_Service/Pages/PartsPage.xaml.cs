@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Xml.Linq;
+using Car_service.Pages;
 
 namespace Car_Service.Pages
 {
@@ -18,7 +19,7 @@ namespace Car_Service.Pages
 
         }
 
-        private void LoadData()
+        public void LoadData()
         {
             var query = Entities.GetContext().Parts.AsQueryable();
 
