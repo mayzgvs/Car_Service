@@ -10,7 +10,7 @@
       Title="PartsAddPage">
 
 
-    <Grid Style="{StaticResource GridStyle}">
+    <Grid Style="{StaticResource GridStyle}" Margin="0,5,0,0">
         <Border Width="724" Padding="20" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid>
                 <Grid.RowDefinitions>

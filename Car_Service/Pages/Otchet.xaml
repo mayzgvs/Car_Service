@@ -4,17 +4,101 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Car_Service.Pages"
+      xmlns:charts="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+      xmlns:winForms="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Otchet">
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Отчет по заказам">
 
-    <Grid Style="{DynamicResource GridStyle}" Margin="0,5,0,0">
+    <Grid Style="{DynamicResource GridStyle}" Margin="0,10,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="202*"/>
-            <RowDefinition Height="23*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Button Content="Назад" Style="{DynamicResource ActiveButtonStyle}" HorizontalAlignment="Right" Grid.Row="1" Width="140" x:Name="BtnBack" Click="BtnBack_Click" Margin="0,0,10,0" Height="40" VerticalAlignment="Center">
-        </Button>
+        <!-- Заголовок -->
+        <TextBlock Text="Отчет по заказам" 
+                   Style="{StaticResource HeaderTextStyle}"
+                   Grid.Row="0"
+                   HorizontalAlignment="Center"
+                   Margin="0,10"/>
+
+        <!-- Панель управления графиком -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+            <ComboBox x:Name="cbChartType" Width="200" Margin="5,0">
+                <ComboBoxItem Content="Столбчатая диаграмма" Tag="Column"/>
+                <ComboBoxItem Content="Круговая диаграмма" Tag="Pie"/>
+                <ComboBoxItem Content="Линейный график" Tag="Line"/>
+            </ComboBox>
+
+            <Button Content="Обновить график" 
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Margin="10,0" 
+                    Click="UpdateChart_Click"/>
+        </StackPanel>
+
+        <!-- Контейнер для графика и таблицы -->
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- График (WindowsFormsHost) -->
+            <winForms:WindowsFormsHost Grid.Row="0" x:Name="wfhChart" Margin="0,0,0,10">
+                <winForms:WindowsFormsHost.Child>
+                    <charts:Chart x:Name="chartOrders" Dock="Fill">
+                        <charts:Chart.Series>
+                            <charts:Series Name="seriesOrders" ChartType="Column"/>
+                        </charts:Chart.Series>
+                        <charts:Chart.ChartAreas>
+                            <charts:ChartArea Name="chartAreaOrders"/>
+                        </charts:Chart.ChartAreas>
+                    </charts:Chart>
+                </winForms:WindowsFormsHost.Child>
+            </winForms:WindowsFormsHost><WindowsFormsHost />
+
+            <!-- Таблица заказов -->
+            <DataGrid x:Name="OrdersDataGrid"
+                     Grid.Row="1"
+                     Style="{StaticResource DataGridStyle}"
+                     AutoGenerateColumns="False"
+                     Margin="0,10,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№ Заказа" Binding="{Binding OrderId}" Width="90"/>
+                    <DataGridTextColumn Header="Клиент" Binding="{Binding ClientName}" Width="150"/>
+                    <DataGridTextColumn Header="Марка" Binding="{Binding CarBrand}" Width="120"/>
+                    <DataGridTextColumn Header="Модель" Binding="{Binding CarModel}" Width="120"/>
+                    <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="*"/>
+                    <DataGridTextColumn Header="Итого" Binding="{Binding TotalPrice, StringFormat=₽ {0:N0}}" Width="100"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <!-- Кнопки действий -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+            <Button Content="Экспорт в Excel" 
+                    Style="{StaticResource PrimaryButtonStyle}" 
+                    Width="140"
+                    Height="40"
+                    Margin="5,0"
+                    Click="ExportToExcel_Click"/>
+
+            <Button Content="Экспорт в Word" 
+                    Style="{StaticResource PrimaryButtonStyle}" 
+                    Width="140"
+                    Height="40"
+                    Margin="5,0"
+                    Click="ExportToWord_Click"/>
+
+            <Button Content="Назад"
+                    Style="{DynamicResource ActiveButtonStyle}" 
+                    Width="140"
+                    Height="40"
+                    Margin="5,0"
+                    Click="BtnBack_Click"/>
+        </StackPanel>
     </Grid>
 </Page>
