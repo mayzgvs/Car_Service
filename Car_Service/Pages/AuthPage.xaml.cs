@@ -38,6 +38,8 @@ namespace Car_Service.Pages
 
         private void SignIn_Click(object sender, RoutedEventArgs e)
         {
+
+    
             if (string.IsNullOrEmpty(tbLogin.Text) || string.IsNullOrEmpty(psBox.Password))
             {
                 MessageBox.Show("Введите логин и пароль!");
@@ -58,6 +60,8 @@ namespace Car_Service.Pages
                     NavigationService.Navigate(new MainPage());
                 }
             }
+
+            
         }
 
         private void Reg_Click(object sender, RoutedEventArgs e)

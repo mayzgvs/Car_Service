@@ -91,6 +91,7 @@
           <Property Name="CustomerID" Type="int" Nullable="false" />
           <Property Name="Make" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
           <Property Name="VIN" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Work">
@@ -399,6 +400,7 @@
           <Property Name="CustomerID" Type="Int32" Nullable="false" />
           <Property Name="Make" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
           <Property Name="VIN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Customers" Relationship="Self.FK__Vehicles__Custom__398D8EEE" FromRole="Vehicles" ToRole="Customers" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Vehicles" FromRole="Vehicles" ToRole="Orders" />
@@ -705,6 +707,7 @@
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="Make" ColumnName="Make" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="VIN" ColumnName="VIN" />
               </MappingFragment>
             </EntityTypeMapping>

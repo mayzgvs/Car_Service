@@ -6,6 +6,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using Word = Microsoft.Office.Interop.Word;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Collections.Generic;
+using System.IdentityModel.Protocols.WSTrust;
 
 namespace Car_Service.Pages
 {
@@ -18,6 +19,8 @@ namespace Car_Service.Pages
             InitializeComponent();
             LoadData();
             InitializeChart();
+
+            OrdersDataGrid.ItemsSource = Entities.GetContext().Orders.ToList();
         }
 
         private void LoadData()
@@ -33,8 +36,7 @@ namespace Car_Service.Pages
                         ClientName = o.Customers.FullName,
                         CarMake = o.Vehicles.Make,
                         CarModel = o.Vehicles.Model,
-                        Description = o.Problem,
-                        TotalPrice = o.Payments.FirstOrDefault().Amount
+                        Description = o.Problem
                     })
                     .ToList();
 
@@ -51,9 +53,9 @@ namespace Car_Service.Pages
         {
             // Настройка области графика
             chartOrders.ChartAreas[0].AxisX.Title = "Клиенты";
-            chartOrders.ChartAreas[0].AxisY.Title = "Сумма (₽)";
+            chartOrders.ChartAreas[0].AxisY.Title = "Количество заказов";
             chartOrders.ChartAreas[0].AxisX.Interval = 1;
-            chartOrders.ChartAreas[0].AxisY.Interval = 5000;
+            chartOrders.Series[0].Name = "Заказы в процессе";
         }
 
         private void UpdateChart()
@@ -61,18 +63,19 @@ namespace Car_Service.Pages
             if (OrdersDataGrid.ItemsSource == null) return;
 
             // Очистка предыдущих данных
-            chartOrders.Series[0].Points.Clear();
+            chartOrders.Series.Clear();
 
-            // Получение данных для графика
-            var chartData = OrdersDataGrid.ItemsSource.Cast<dynamic>()
-                .Select(x => new { Client = x.ClientName, Amount = (double)x.TotalPrice })
-                .ToList();
+            var customers = Entities.GetContext().Customers.ToList();
+            var vehicles = Entities.GetContext().Vehicles.ToList();
+            int total = Entities.GetContext().Orders.Count(o => o.Status == "В процессе");
 
             // Добавление данных в график
-            foreach (var item in chartData)
-            {
-                chartOrders.Series[0].Points.AddXY(item.Client, item.Amount);
-            }
+            Series series = new Series();
+            series.Points.Add(total);
+            series.Points[0].AxisLabel = "В процессе";
+            series.IsValueShownAsLabel = true;
+
+            chartOrders.Series.Add(series);
 
             // Установка типа графика
             string chartType = (cbChartType.SelectedItem as ComboBoxItem)?.Tag?.ToString() ?? "Column";
@@ -93,35 +96,85 @@ namespace Car_Service.Pages
                 Excel.Workbook workbook = excelApp.Workbooks.Add();
                 Excel.Worksheet worksheet = workbook.Worksheets[1];
 
-                // Заголовки
-                for (int i = 0; i < OrdersDataGrid.Columns.Count; i++)
+                // Заголовок отчета
+                worksheet.Cells[1, 1] = "Отчет по заказам в процессе";
+                Excel.Range headerRange = worksheet.Range["A1", $"E1"];
+                headerRange.Merge();
+                headerRange.Font.Bold = true;
+                headerRange.Font.Size = 14;
+                headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                // Заголовки таблицы
+                string[] headers = { "№ Заказа", "Клиент", "Марка", "Модель", "Описание" };
+                for (int i = 0; i < headers.Length; i++)
                 {
-                    worksheet.Cells[1, i + 1] = OrdersDataGrid.Columns[i].Header;
+                    worksheet.Cells[3, i + 1] = headers[i];
+                    worksheet.Cells[3, i + 1].Font.Bold = true;
+                    worksheet.Cells[3, i + 1].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                 }
 
                 // Данные
-                for (int i = 0; i < OrdersDataGrid.Items.Count; i++)
+                int row = 4;
+                foreach (var item in OrdersDataGrid.Items)
                 {
-                    dynamic item = OrdersDataGrid.Items[i];
-                    worksheet.Cells[i + 2, 1] = item.OrderId;
-                    worksheet.Cells[i + 2, 2] = item.ClientName;
-                    worksheet.Cells[i + 2, 3] = item.CarMake;
-                    worksheet.Cells[i + 2, 4] = item.CarModel;
-                    worksheet.Cells[i + 2, 5] = item.Description;
-                    worksheet.Cells[i + 2, 6] = item.TotalPrice;
+                    dynamic order = item;
+                    worksheet.Cells[row, 1] = order.OrderId;
+                    worksheet.Cells[row, 2] = order.ClientName;
+                    worksheet.Cells[row, 3] = order.CarMake;
+                    worksheet.Cells[row, 4] = order.CarModel;
+                    worksheet.Cells[row, 5] = order.Description;
+
+                    // Форматирование границ
+                    Excel.Range dataRange = worksheet.Range[$"A{row}", $"E{row}"];
+                    dataRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
+                    row++;
                 }
 
-                // Добавление графика
-                Excel.ChartObjects chartObjects = worksheet.ChartObjects(Type.Missing);
-                Excel.ChartObject chartObject = chartObjects.Add(100, 100, 500, 300);
+                // Автоподбор ширины столбцов
+                worksheet.Columns["A:E"].AutoFit();
+
+                // Добавление сводной информации
+                worksheet.Cells[row + 2, 1] = $"Всего заказов в процессе: {OrdersDataGrid.Items.Count}";
+                worksheet.Cells[row + 2, 1].Font.Bold = true;
+
+                // Добавление диаграммы
+                Excel.ChartObjects chartObjects = (Excel.ChartObjects)worksheet.ChartObjects(Type.Missing);
+                Excel.ChartObject chartObject = chartObjects.Add(100, 300, 400, 250);
                 Excel.Chart chart = chartObject.Chart;
 
-                Excel.Range range = worksheet.Range["A1", $"F{OrdersDataGrid.Items.Count + 1}"];
-                chart.SetSourceData(range);
-                chart.ChartType = Excel.XlChartType.xlColumnClustered;
+                // Создаем данные для диаграммы (по клиентам)
+                var chartData = new Dictionary<string, int>();
+                foreach (var item in OrdersDataGrid.Items)
+                {
+                    dynamic order = item;
+                    string client = order.ClientName;
+                    if (chartData.ContainsKey(client))
+                        chartData[client]++;
+                    else
+                        chartData[client] = 1;
+                }
 
-                // Автоподбор ширины
-                worksheet.Columns.AutoFit();
+                // Добавляем данные на лист
+                int chartRow = row + 4;
+                worksheet.Cells[chartRow, 1] = "Клиент";
+                worksheet.Cells[chartRow, 2] = "Количество заказов";
+                worksheet.Cells[chartRow, 1].Font.Bold = true;
+                worksheet.Cells[chartRow, 2].Font.Bold = true;
+
+                foreach (var item in chartData)
+                {
+                    chartRow++;
+                    worksheet.Cells[chartRow, 1] = item.Key;
+                    worksheet.Cells[chartRow, 2] = item.Value;
+                }
+
+                // Настройка диаграммы
+                Excel.Range chartRange = worksheet.Range[$"A{row + 4}", $"B{chartRow}"];
+                chart.SetSourceData(chartRange);
+                chart.ChartType = Excel.XlChartType.xlColumnClustered;
+                chart.HasTitle = true;
+                chart.ChartTitle.Text = "Распределение заказов по клиентам";
             }
             catch (Exception ex)
             {
@@ -137,45 +190,76 @@ namespace Car_Service.Pages
                 wordApp.Visible = true;
                 Word.Document document = wordApp.Documents.Add();
 
-                // Заголовок
-                Word.Paragraph titlePara = document.Paragraphs.Add();
-                titlePara.Range.Text = "Отчет по заказам";
-                titlePara.Range.Font.Bold = 1;
-                titlePara.Range.Font.Size = 16;
-                titlePara.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-                titlePara.Range.InsertParagraphAfter();
+                // Заголовок документа
+                Word.Paragraph title = document.Paragraphs.Add();
+                title.Range.Text = "Отчет по заказам в процессе";
+                title.Range.Font.Bold = 1;
+                title.Range.Font.Size = 16;
+                title.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                title.Range.InsertParagraphAfter();
+
+                // Сводная информация
+                Word.Paragraph summary = document.Paragraphs.Add();
+                summary.Range.Text = $"Всего заказов в процессе: {OrdersDataGrid.Items.Count}";
+                summary.Range.Font.Bold = 1;
+                summary.Format.SpaceAfter = 12;
+                summary.Range.InsertParagraphAfter();
 
                 // Таблица с данными
                 Word.Table table = document.Tables.Add(
-                    titlePara.Range,
+                    summary.Range,
                     OrdersDataGrid.Items.Count + 1,
-                    OrdersDataGrid.Columns.Count);
-                table.Borders.Enable = 1;
+                    5);  // 5 столбцов: №, Клиент, Марка, Модель, Описание
 
                 // Заголовки таблицы
-                for (int i = 0; i < OrdersDataGrid.Columns.Count; i++)
+                table.Cell(1, 1).Range.Text = "№ Заказа";
+                table.Cell(1, 2).Range.Text = "Клиент";
+                table.Cell(1, 3).Range.Text = "Марка";
+                table.Cell(1, 4).Range.Text = "Модель";
+                table.Cell(1, 5).Range.Text = "Описание";
+
+                // Форматирование заголовков
+                for (int i = 1; i <= 5; i++)
                 {
-                    table.Cell(1, i + 1).Range.Text = OrdersDataGrid.Columns[i].Header.ToString();
-                    table.Cell(1, i + 1).Range.Font.Bold = 1;
+                    table.Cell(1, i).Range.Font.Bold = 1;
+                    table.Cell(1, i).Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 }
 
-                // Данные таблицы
-                for (int i = 0; i < OrdersDataGrid.Items.Count; i++)
+                // Заполнение данными
+                int row = 2;
+                foreach (var item in OrdersDataGrid.Items)
                 {
-                    dynamic item = OrdersDataGrid.Items[i];
-                    table.Cell(i + 2, 1).Range.Text = item.OrderId.ToString();
-                    table.Cell(i + 2, 2).Range.Text = item.ClientName;
-                    table.Cell(i + 2, 3).Range.Text = item.CarMake;
-                    table.Cell(i + 2, 4).Range.Text = item.CarModel;
-                    table.Cell(i + 2, 5).Range.Text = item.Description;
-                    table.Cell(i + 2, 6).Range.Text = item.TotalPrice.ToString("N0") + " ₽";
+                    dynamic order = item;
+                    table.Cell(row, 1).Range.Text = order.OrderId;
+                    table.Cell(row, 2).Range.Text = order.ClientName;
+                    table.Cell(row, 3).Range.Text = order.CarMake;
+                    table.Cell(row, 4).Range.Text = order.CarModel;
+                    table.Cell(row, 5).Range.Text = order.Description;
+                    row++;
                 }
+
+                // Стиль таблицы
+                table.Borders.Enable = 1;
+                table.Rows[1].Range.Font.Bold = 1;
+                table.Rows[1].Range.Shading.BackgroundPatternColor = Word.WdColor.wdColorGray15;
+
+                // Добавление диаграммы
+                Word.Paragraph chartTitle = document.Paragraphs.Add();
+                chartTitle.Range.Text = "Распределение заказов по клиентам";
+                chartTitle.Range.Font.Bold = 1;
+                chartTitle.Range.Font.Size = 14;
+                chartTitle.Format.SpaceAfter = 12;
+                chartTitle.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                chartTitle.Range.InsertParagraphAfter();
 
                 // Вставка изображения графика
                 string tempImagePath = System.IO.Path.GetTempFileName() + ".png";
                 chartOrders.SaveImage(tempImagePath, ChartImageFormat.Png);
                 document.InlineShapes.AddPicture(tempImagePath);
                 System.IO.File.Delete(tempImagePath);
+
+                // Автоподбор ширины таблицы
+                table.AutoFitBehavior(Word.WdAutoFitBehavior.wdAutoFitWindow);
             }
             catch (Exception ex)
             {

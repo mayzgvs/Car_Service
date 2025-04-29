@@ -67,12 +67,11 @@
                      AutoGenerateColumns="False"
                      Margin="0,10,0,0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="№ Заказа" Binding="{Binding OrderId}" Width="90"/>
-                    <DataGridTextColumn Header="Клиент" Binding="{Binding ClientName}" Width="150"/>
-                    <DataGridTextColumn Header="Марка" Binding="{Binding CarBrand}" Width="120"/>
-                    <DataGridTextColumn Header="Модель" Binding="{Binding CarModel}" Width="120"/>
-                    <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="*"/>
-                    <DataGridTextColumn Header="Итого" Binding="{Binding TotalPrice, StringFormat=₽ {0:N0}}" Width="100"/>
+                    <DataGridTextColumn Header="№ Заказа" Binding="{Binding OrderID}" Width="105"/>
+                    <DataGridTextColumn Header="Клиент" Binding="{Binding Customers.FullName}" Width="*"/>
+                    <DataGridTextColumn Header="Марка" Binding="{Binding Vehicles.Make}" Width="*"/>
+                    <DataGridTextColumn Header="Модель" Binding="{Binding Vehicles.Model}" Width="*"/>
+                    <DataGridTextColumn Header="Описание" Binding="{Binding Problem}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

@@ -10,9 +10,11 @@
 namespace Car_Service
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+    using System.Runtime.Remoting.Contexts;
+
     public partial class Entities : DbContext
     {
         public Entities()
@@ -30,7 +32,7 @@ namespace Car_Service
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<Customers> Customers { get; set; }
         public virtual DbSet<Employees> Employees { get; set; }
         public virtual DbSet<Feedback> Feedback { get; set; }
