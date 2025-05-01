@@ -39,7 +39,7 @@
             <Button x:Name="ButtonOtchet" Style="{DynamicResource PrimaryButtonStyle}" 
                     Content="Отчет по заказам" Width="224" Height="60" Margin="10" Click="ButtonOtchet_Click"/>
             <Button x:Name="ButtonOtchetVIN" Style="{DynamicResource PrimaryButtonStyle}" 
-                    Content="Отчет по VIN" Width="224" Height="60" Margin="10" Click="ButtonOtchetVIN_Click"/>
+                    Content="Отчет по транспорту" Width="224" Height="60" Margin="10" Click="ButtonOtchetVIN_Click"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Height="400" Width="224">

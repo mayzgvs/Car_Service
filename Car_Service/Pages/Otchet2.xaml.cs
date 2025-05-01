@@ -160,9 +160,9 @@ namespace Car_Service.Pages
             // Заголовки таблицы
             worksheet.Cells[10, 1] = "Марка";
             worksheet.Cells[10, 2] = "Модель";
-            worksheet.Cells[10, 4] = "VIN";
-            worksheet.Cells[10, 5] = "Владелец";
-            worksheet.Cells[10, 6] = "Кол-во заказов";
+            worksheet.Cells[10, 3] = "VIN";
+            worksheet.Cells[10, 4] = "Владелец";
+            worksheet.Cells[10, 5] = "Кол-во заказов";
 
             Excel.Range tableHeader = worksheet.Range["A10:F10"];
             tableHeader.Font.Bold = true;
@@ -174,9 +174,9 @@ namespace Car_Service.Pages
                 var vehicle = vehicles[i];
                 worksheet.Cells[i + 11, 1] = vehicle.Make;
                 worksheet.Cells[i + 11, 2] = vehicle.Model;
-                worksheet.Cells[i + 11, 4] = vehicle.VIN;
-                worksheet.Cells[i + 11, 5] = vehicle.Customers?.FullName ?? "Не указан";
-                worksheet.Cells[i + 11, 6] = vehicle.Orders.Count;
+                worksheet.Cells[i + 11, 3] = vehicle.VIN;
+                worksheet.Cells[i + 11, 4] = vehicle.Customers?.FullName ?? "Не указан";
+                worksheet.Cells[i + 11, 5] = vehicle.Orders.Count;
             }
 
             // Форматирование таблицы
@@ -255,9 +255,9 @@ namespace Car_Service.Pages
             // Заголовки таблицы
             vehiclesTable.Cell(1, 1).Range.Text = "Марка";
             vehiclesTable.Cell(1, 2).Range.Text = "Модель";
-            vehiclesTable.Cell(1, 4).Range.Text = "VIN";
-            vehiclesTable.Cell(1, 5).Range.Text = "Владелец";
-            vehiclesTable.Cell(1, 6).Range.Text = "Кол-во заказов";
+            vehiclesTable.Cell(1, 3).Range.Text = "VIN";
+            vehiclesTable.Cell(1, 4).Range.Text = "Владелец";
+            vehiclesTable.Cell(1, 5).Range.Text = "Кол-во заказов";
 
             // Форматирование заголовков
             Word.Range headerRange = vehiclesTable.Rows[1].Range;
@@ -273,9 +273,9 @@ namespace Car_Service.Pages
                 var vehicle = vehicles[i];
                 vehiclesTable.Cell(i + 2, 1).Range.Text = vehicle.Make;
                 vehiclesTable.Cell(i + 2, 2).Range.Text = vehicle.Model;
-                vehiclesTable.Cell(i + 2, 4).Range.Text = vehicle.VIN;
-                vehiclesTable.Cell(i + 2, 5).Range.Text = vehicle.Customers?.FullName ?? "Не указан";
-                vehiclesTable.Cell(i + 2, 6).Range.Text = vehicle.Orders.Count.ToString();
+                vehiclesTable.Cell(i + 2, 3).Range.Text = vehicle.VIN;
+                vehiclesTable.Cell(i + 2, 4).Range.Text = vehicle.Customers?.FullName ?? "Не указан";
+                vehiclesTable.Cell(i + 2, 5).Range.Text = vehicle.Orders.Count.ToString();
 
                 // Форматирование строк
                 for (int j = 1; j <= 6; j++)
