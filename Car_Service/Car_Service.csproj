@@ -180,6 +180,9 @@
     <Compile Include="Services.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Vehicles.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

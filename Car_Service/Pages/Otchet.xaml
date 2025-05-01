@@ -30,7 +30,6 @@
             <ComboBox x:Name="cbChartType" Width="200" Margin="5,0">
                 <ComboBoxItem Content="Столбчатая диаграмма" Tag="Column"/>
                 <ComboBoxItem Content="Круговая диаграмма" Tag="Pie"/>
-                <ComboBoxItem Content="Линейный график" Tag="Line"/>
             </ComboBox>
 
             <Button Content="Обновить график" 
@@ -50,15 +49,30 @@
             <winForms:WindowsFormsHost Grid.Row="0" x:Name="wfhChart" Margin="0,0,0,10">
                 <winForms:WindowsFormsHost.Child>
                     <charts:Chart x:Name="chartOrders" Dock="Fill">
-                        <charts:Chart.Series>
-                            <charts:Series Name="seriesOrders" ChartType="Column"/>
-                        </charts:Chart.Series>
                         <charts:Chart.ChartAreas>
-                            <charts:ChartArea Name="chartAreaOrders"/>
+                            <charts:ChartArea Name="chartArea1">
+                                <charts:ChartArea.AxisX>
+                                    <charts:Axis Title="Статусы заказов">
+                                        <charts:Axis.LabelStyle>
+                                            <charts:LabelStyle />
+                                        </charts:Axis.LabelStyle>
+                                    </charts:Axis>
+                                </charts:ChartArea.AxisX>
+                                <charts:ChartArea.AxisY>
+                                    <charts:Axis Title="Количество">
+                                        <charts:Axis.LabelStyle>
+                                            <charts:LabelStyle />
+                                        </charts:Axis.LabelStyle>
+                                    </charts:Axis>
+                                </charts:ChartArea.AxisY>
+                            </charts:ChartArea>
                         </charts:Chart.ChartAreas>
+                        <charts:Chart.Legends>
+                            <charts:Legend Name="legend1" />
+                        </charts:Chart.Legends>
                     </charts:Chart>
                 </winForms:WindowsFormsHost.Child>
-            </winForms:WindowsFormsHost><WindowsFormsHost />
+            </winForms:WindowsFormsHost>
 
             <!-- Таблица заказов -->
             <DataGrid x:Name="OrdersDataGrid"
@@ -67,11 +81,12 @@
                      AutoGenerateColumns="False"
                      Margin="0,10,0,0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="№ Заказа" Binding="{Binding OrderID}" Width="105"/>
+                    <DataGridTextColumn Header="№ Заказа" Binding="{Binding OrderID}" Width="95"/>
                     <DataGridTextColumn Header="Клиент" Binding="{Binding Customers.FullName}" Width="*"/>
                     <DataGridTextColumn Header="Марка" Binding="{Binding Vehicles.Make}" Width="*"/>
                     <DataGridTextColumn Header="Модель" Binding="{Binding Vehicles.Model}" Width="*"/>
                     <DataGridTextColumn Header="Описание" Binding="{Binding Problem}" Width="*"/>
+                    <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

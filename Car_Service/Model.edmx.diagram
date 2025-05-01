@@ -4,16 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="eac36b3914c14924b2c0ec533dfe5b0b" Name="Diagram1">
+      <Diagram DiagramId="7173a2e33f00490ead205e653806fcda" Name="Diagram1">
         <EntityTypeShape EntityType="Car_serviceModel.Customers" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Car_serviceModel.Employees" Width="1.5" PointX="8.25" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Car_serviceModel.Feedback" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Car_serviceModel.Feedback" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Car_serviceModel.Inventory" Width="1.5" PointX="6" PointY="9.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Car_serviceModel.Orders" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Car_serviceModel.Parts" Width="1.5" PointX="8.25" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Car_serviceModel.Payments" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Car_serviceModel.Services" Width="1.5" PointX="8.25" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Car_serviceModel.Vehicles" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Car_serviceModel.Payments" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Car_serviceModel.Services" Width="1.5" PointX="8.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Car_serviceModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Car_serviceModel.Vehicles" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Car_serviceModel.Work" Width="1.5" PointX="10.5" PointY="4.625" IsExpanded="true" />
         <AssociationConnector Association="Car_serviceModel.FK__Feedback__Custom__5535A963" ManuallyRouted="false" />
         <AssociationConnector Association="Car_serviceModel.FK__Vehicles__Custom__398D8EEE" ManuallyRouted="false" />
