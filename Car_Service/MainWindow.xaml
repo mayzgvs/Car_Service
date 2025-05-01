@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Car_Service"
         mc:Ignorable="d"
-        Title="Автосервис" Height="700" Width="800">
-    <Grid>
+        Title="Автосервис" Height="700" Width="800" Background="#FF4A5568">
+    <Grid Style="{StaticResource GridStyle}">
         <Frame Source="Pages\AuthPage.xaml" NavigationUIVisibility ="Hidden"/>
     </Grid>
 </Window>
