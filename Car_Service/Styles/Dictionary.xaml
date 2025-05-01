@@ -160,6 +160,21 @@
         </Style.Resources>
     </Style>
 
+    <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="#FF4A5568"/>
+        <Setter Property="BorderBrush" Value="#FF718096"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="10" 
+                              ShadowDepth="2" 
+                              Opacity="0.3" 
+                              Color="Black"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="DataGridStyle" TargetType="DataGrid">
         <Setter Property="Background" Value="#FF2D3748"/>
         <Setter Property="Foreground" Value="#e9ecef"/>

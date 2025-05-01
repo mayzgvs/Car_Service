@@ -29,6 +29,13 @@ namespace Car_Service.Pages
 
             fullName.ItemsSource = Entities.GetContext().Customers.ToList();
             CustCar.ItemsSource = Entities.GetContext().Vehicles.ToList();
+
+            // Если редактируем существующую запчасть, устанавливаем выбранный склад
+            if (selectedOrder != null)
+            {
+                fullName.SelectedValue = _order.CustomerID;
+                CustCar.SelectedValue = _order.VehicleID;
+            }
         }
         private Orders _order = new Orders();
 

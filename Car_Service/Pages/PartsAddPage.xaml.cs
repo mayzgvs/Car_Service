@@ -1,11 +1,9 @@
 ﻿using Car_Service;
-using Car_Service.Pages;
 using Microsoft.Win32;
 using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 
 namespace Car_service.Pages
 {
@@ -16,56 +14,15 @@ namespace Car_service.Pages
         public PartsAddPage(Parts selectedPart = null)
         {
             InitializeComponent();
-
-            // Инициализация _currentPart
+            cbInventory.ItemsSource = Entities.GetContext().Inventory.ToList();
             _currentPart = selectedPart ?? new Parts();
             DataContext = _currentPart;
-
-            // Загрузка данных для ComboBox
-            LoadInventoryData();
+            
 
             // Если редактируем существующую запчасть, устанавливаем выбранный склад
             if (selectedPart != null)
             {
                 cbInventory.SelectedValue = _currentPart.InventoryID;
-            }
-
-            // Если редактируем существующую запчасть, загружаем изображение
-            if (!string.IsNullOrEmpty(_currentPart.Picture))
-            {
-                LoadImage(_currentPart.Picture);
-            }
-        }
-
-        private void LoadInventoryData()
-        {
-            try
-            {
-                cbInventory.ItemsSource = Entities.GetContext().Inventory.ToList();
-                cbInventory.DisplayMemberPath = "InventoryName";
-                cbInventory.SelectedValuePath = "InventoryID";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка загрузки данных склада: {ex.Message}");
-            }
-        }
-
-        private void LoadImage(string imagePath)
-        {
-            try
-            {
-                var bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.UriSource = new Uri(imagePath);
-                bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                bitmap.EndInit();
-                PartImage.Source = bitmap;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка загрузки изображения: {ex.Message}");
-                PartImage.Source = null;
             }
         }
 
@@ -90,6 +47,8 @@ namespace Car_service.Pages
                 // Сохранение данных
                 if (_currentPart.PartID == 0) // Новая запчасть
                 {
+                    
+                    _currentPart.InventoryID = Convert.ToInt32(cbInventory.SelectedValue);
                     Entities.GetContext().Parts.Add(_currentPart);
                 }
 
@@ -122,9 +81,11 @@ namespace Car_service.Pages
             {
                 try
                 {
-                    // Сохраняем только имя файла (или полный путь, в зависимости от вашей логики)
+                    // Сохраняем только имя файла (или полный путь)
                     _currentPart.Picture = openFileDialog.FileName;
-                    LoadImage(_currentPart.Picture);
+                    DataContext = null;
+                    DataContext = _currentPart;
+                    
                 }
                 catch (Exception ex)
                 {

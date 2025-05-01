@@ -85,7 +85,7 @@
                                VerticalAlignment="Center"/>
                     <xctk:WatermarkComboBox Name="fName" 
                                            Grid.Column="2"
-                                           SelectedValuePath="Customers" 
+                                           SelectedValuePath="CustomerID" 
                                            DisplayMemberPath="FullName" 
                                            Height="32" 
                                            VerticalAlignment="Center"

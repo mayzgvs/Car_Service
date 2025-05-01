@@ -34,7 +34,7 @@
                                VerticalAlignment="Center"/>
                     <xctk:WatermarkComboBox Name="fullName" 
                                            Grid.Column="2"
-                                           SelectedValuePath="Customers" 
+                                           SelectedValuePath="CustomerID" 
                                            DisplayMemberPath="FullName" 
                                            Height="32" 
                                            VerticalAlignment="Center"
@@ -53,7 +53,7 @@
                                VerticalAlignment="Center"/>
                     <xctk:WatermarkComboBox Name="CustCar" 
                                            Grid.Column="2"
-                                           SelectedValuePath="Vehicles" 
+                                           SelectedValuePath="VehicleID" 
                                            DisplayMemberPath="Model" 
                                            Height="32" 
                                            VerticalAlignment="Center"

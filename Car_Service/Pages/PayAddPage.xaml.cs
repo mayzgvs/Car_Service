@@ -29,6 +29,13 @@ namespace Car_Service.Pages
 
             fName.ItemsSource = Entities.GetContext().Customers.ToList();
             NumOrder.ItemsSource = Entities.GetContext().Orders.ToList();
+
+            // Если редактируем существующую запчасть, устанавливаем выбранный склад
+            if (selectedPay != null)
+            {
+                NumOrder.SelectedValue = selectedPay.OrderID;
+                fName.SelectedValue = selectedPay.CustomerID;
+            }
         }
         private Payments _pay = new Payments();
 

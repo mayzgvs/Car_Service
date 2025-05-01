@@ -33,7 +33,7 @@
                            VerticalAlignment="Center"/>
                     <xctk:WatermarkComboBox Name="NumOrder" 
                                        Grid.Column="2"
-                                       SelectedValuePath="Orders" 
+                                       SelectedValuePath="OrderID" 
                                        DisplayMemberPath="Problem" 
                                        Height="32" 
                                        VerticalAlignment="Center"
@@ -52,7 +52,7 @@
                            VerticalAlignment="Center"/>
                     <xctk:WatermarkComboBox Name="Position" 
                                        Grid.Column="2"
-                                       SelectedValuePath="Employees" 
+                                       SelectedValuePath="EmployeeID" 
                                        DisplayMemberPath="Position" 
                                        Height="32" 
                                        VerticalAlignment="Center"
@@ -71,7 +71,7 @@
                            VerticalAlignment="Center"/>
                     <xctk:WatermarkComboBox Name="sName" 
                                            Grid.Column="2"
-                                           SelectedValuePath="Services" 
+                                           SelectedValuePath="ServiceID" 
                                            DisplayMemberPath="ServiceName" 
                                            Height="32" 
                                            VerticalAlignment="Center"
@@ -90,7 +90,7 @@
                                 VerticalAlignment="Center"/>
                     <xctk:WatermarkComboBox Name="pName" 
                                            Grid.Column="2"
-                                           SelectedValuePath="Parts" 
+                                           SelectedValuePath="PartID" 
                                            DisplayMemberPath="PartName" 
                                            Height="32" 
                                            VerticalAlignment="Center"

@@ -27,6 +27,12 @@ namespace Car_Service.Pages
             DataContext = _feedback;
 
             fName.ItemsSource = Entities.GetContext().Customers.ToList();
+
+            // Если редактируем существующую запчасть, устанавливаем выбранный склад
+            if (selectedFeedback != null)
+            {
+                fName.SelectedValue = _feedback.CustomerID;
+            }
         }
         private Feedback _feedback = new Feedback();
 

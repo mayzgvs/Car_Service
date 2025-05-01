@@ -30,6 +30,12 @@ namespace Car_Service.Pages
             DataContext = _vehicles;
 
             fName.ItemsSource = Entities.GetContext().Customers.ToList();
+
+            // Если редактируем существующую запчасть, устанавливаем выбранный склад
+            if (selectedVehicles != null)
+            {
+                fName.SelectedValue = _vehicles.CustomerID;
+            }
         }
 
         private Vehicles _vehicles = new Vehicles();

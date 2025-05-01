@@ -33,14 +33,14 @@ namespace Car_Service.Pages
             LViewParts.ItemsSource = query.ToList();
         }
 
-        private void PartsPage_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (Visibility == Visibility.Visible)
-            {
-                Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
-                LoadData();
-            }
-        }
+        //private void PartsPage_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        //{
+        //    if (Visibility == Visibility.Visible)
+        //    {
+        //        Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+        //        LoadData();
+        //    }
+        //}
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {

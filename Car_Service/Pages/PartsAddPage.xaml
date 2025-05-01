@@ -69,7 +69,7 @@
                     <xctk:WatermarkComboBox Name="cbInventory"
                                           Grid.Column="2"
                                           SelectedValuePath="InventoryID"
-                                          DisplayMemberPath="Adress"
+                                          DisplayMemberPath="InventoryName"
                                           Height="32"
                                           VerticalAlignment="Center"
                                           Watermark="Выберите склад"/>
@@ -92,7 +92,7 @@
                                 Height="32"
                                 Margin="0,0,10,0"
                                 Click="BtnSelectImage_Click"/>
-                        <Image x:Name="PartImage" Width="100" Height="32" Stretch="Uniform"/>
+                        <Image x:Name="PartImage" Source="{Binding Picture}"  Width="100" Height="32" Stretch="Uniform"/>
                     </StackPanel>
                 </Grid>
 

@@ -30,6 +30,15 @@ namespace Car_Service.Pages
             Position.ItemsSource = Entities.GetContext().Employees.ToList();
             sName.ItemsSource = Entities.GetContext().Services.ToList();
             pName.ItemsSource = Entities.GetContext().Parts.ToList();
+
+            // Если редактируем существующую запчасть, устанавливаем выбранный склад
+            if (selectedWork != null)
+            {
+                NumOrder.SelectedValue = _work.OrderID;
+                Position.SelectedValue = _work.EmployeeID;
+                sName.SelectedValue = _work.ServiceID;
+                pName.SelectedValue = _work.PartID;
+            }
         }
 
         private Work _work = new Work();
