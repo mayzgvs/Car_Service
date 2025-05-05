@@ -37,7 +37,7 @@
                             <Border Style="{DynamicResource BorderStyle}" Grid.Row="0" CornerRadius="4"
                                     Margin="5">
                                 <Image Source="{Binding Picture}" 
-                                       Stretch="UniformToFill" 
+                                       Stretch="Fill" 
                                        HorizontalAlignment="Center" 
                                        VerticalAlignment="Center"
                                        MaxHeight="160" MaxWidth="240">
